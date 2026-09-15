@@ -56,6 +56,12 @@ PACMAN, KIKSTART und PUNIVERS wurden vollständig von Tobias Bremer für den Z10
 
 Unter `tools/at-ds/` liegen ein Universalprogramm für macOS, eine x86-Fassung für Windows und der portable C-Quelltext. Das Werkzeug versieht eine rohe Programmdatei mit dem benötigten Z1013-Kopf und kopiert sie auf die SD-Karte. Siehe [tools/at-ds/README.md](tools/at-ds/README.md).
 
+## Autor und Projektseite
+
+Entwicklung: Tobias Bremer
+
+Weitere Informationen, frühere Z80-/Z180-Eigenbauten und zusätzliche Dokumentation: [qlb-harz.de/Z80](https://qlb-harz.de/Z80/)
+
 ## Rechte und Herkunft
 
 Der T80-Kern, der HDMI-Grundkern und Teile des ursprünglichen Tang-Nano-HDMI-Beispiels stammen aus Fremdprojekten und werden ausdrücklich nicht als eigene Entwicklung ausgegeben. Das historische ROM- und Zeichensatzmaterial von Robotron ist gesondert gekennzeichnet. Einzelheiten, Änderungsstatus und offene Rechtefragen stehen in [THIRD_PARTY.md](THIRD_PARTY.md). Für die projektspezifischen Eigenentwicklungen einschließlich der drei Programme wird derzeit keine pauschale Nutzungslizenz erteilt; siehe [LICENSE.md](LICENSE.md).

@@ -1,4 +1,8 @@
-# Bauen und programmieren
+# Bauen und programmieren / Building and programming
+
+[Deutsch](#deutsch) · [English](#english)
+
+## Deutsch
 
 ## Voraussetzungen
 
@@ -16,7 +20,7 @@
 4. Für einen gefahrlosen Test im Programmer `SRAM Program` verwenden.
 5. Erst nach erfolgreichem Test dauerhaft in den internen Konfigurations-Flash schreiben.
 
-Der geprüfte Ausgangsstand liegt zusätzlich als `release/hdmi.fs` und `release/hdmi.bin` vor. Die Prüfsummen befinden sich in `release/SHA256SUMS`.
+Der geprüfte und sofort nutzbare Bitstream liegt als `release/z1013.fs` vor. `release/hdmi.bin` ist eine alternative Binärdarstellung für andere Programmierverfahren. Für Gowin Programmer wird `z1013.fs` empfohlen. Die Prüfsummen befinden sich in `release/SHA256SUMS`.
 
 ## Boot-ROM neu bauen
 
@@ -26,3 +30,39 @@ Die FAT32-Routinen liegen in `firmware/IO_SYS_NEU`. Sie werden mit SjASMPlus ass
 
 `src/gowin_rpll/TMDS_rPLL.v` ist die für dieses Projekt erzeugte PLL-Instanz. Die Pin- und Timing-Vorgaben liegen in `src/hdmi.cst` und `src/nano_20k_video.sdc`.
 
+---
+
+## English
+
+### Requirements
+
+- Sipeed Tang Nano 20K with FPGA `GW2AR-LV18QN88C8/I7`
+- Gowin EDA 1.9.11.03 or a compatible newer version
+- HDMI monitor or television
+- FAT32 microSD card
+- Optional PS/2 keyboard with a passive 5 V/3.3 V level adapter
+
+### Using the ready-made bitstream
+
+The tested bitstream is [`release/z1013.fs`](../release/z1013.fs). Connect the board through USB and select this file in Gowin Programmer.
+
+- Use `SRAM Program` for a temporary test. The configuration is lost when power is removed.
+- After a successful test, program the internal configuration flash for automatic startup after power-on.
+
+`release/hdmi.bin` is an alternative raw binary for other programming methods. Use `z1013.fs` with Gowin Programmer. Checksums are stored in `release/SHA256SUMS`.
+
+### Building from source
+
+1. Open `hdmi.gprj` in Gowin EDA.
+2. Confirm that `video_top` is the top module.
+3. Run Synthesize and then Place & Route.
+4. Test the result with `SRAM Program`.
+5. Program the internal configuration flash only after the test succeeds.
+
+### Rebuilding the boot ROM
+
+The FAT32 routines are stored in `firmware/IO_SYS_NEU` and are assembled with SjASMPlus. The `build_boot_rom.rb` script inserts the generated parts into `src/gowin_rom/z1013_boot_rom.bin`. Keep a copy of the working ROM before making changes.
+
+### Gowin IP note
+
+`src/gowin_rpll/TMDS_rPLL.v` is the PLL instance generated for this project. Pin and timing constraints are stored in `src/hdmi.cst` and `src/nano_20k_video.sdc`.

@@ -41,7 +41,7 @@ Dieser Stand entspricht dem gesicherten Projekt `Z1013_HDMI_FULL8K_SD_Z80_FAT32_
 1. Eine microSD-Karte mit MBR-Partitionstabelle und FAT32 formatieren.
 2. `PACMAN.COM`, `KIKSTART.COM` und/oder `PUNIVERS.COM` aus `programs/` in das Wurzelverzeichnis der Karte kopieren. Die Dateien sind bereits fertig vorbereitet.
 3. PS/2-Tastatur über die in [docs/HARDWARE.md](docs/HARDWARE.md) beschriebene Pegelanpassung anschließen.
-4. Den fertigen Bitstream [`release/z1013.fs`](release/z1013.fs) mit Gowin Programmer auf das Tang Nano 20K übertragen. Zum Ausprobieren `SRAM Mode` verwenden; für einen dauerhaften Start den internen Flash programmieren.
+4. Den fertigen Bitstream [`release/z1013.fs`](release/z1013.fs) mit Gowin Programmer auf das Tang Nano 20K übertragen. Zum Ausprobieren `SRAM Mode` verwenden; für einen dauerhaften Start `External Flash Mode` wählen und den Flash auf dem Board programmieren.
 5. Nach dem Start F1 drücken, um das Kartenverzeichnis zu sehen.
 
 Ausführlichere Hinweise stehen in [docs/BUILD.md](docs/BUILD.md) und [docs/SD_CARD.md](docs/SD_CARD.md).
@@ -109,7 +109,7 @@ This project recreates an enhanced Z1013 computer on the Sipeed Tang Nano 20K FP
 1. Format a microSD card with an MBR partition table and a FAT32 partition.
 2. Copy `PACMAN.COM`, `KIKSTART.COM`, and/or `PUNIVERS.COM` from `programs/` to the root directory of the card. These files are ready to use.
 3. Connect a PS/2 keyboard through the level adapter described in [docs/HARDWARE.md](docs/HARDWARE.md).
-4. Program [`release/z1013.fs`](release/z1013.fs) onto the Tang Nano 20K with Gowin Programmer. Use `SRAM Mode` for a temporary test, or program the internal flash to keep the system after power-off.
+4. Program [`release/z1013.fs`](release/z1013.fs) onto the Tang Nano 20K with Gowin Programmer. Use `SRAM Mode` for a temporary test, or select `External Flash Mode` and program the on-board flash to keep the system after power-off.
 5. Start the board and press F1 to display the card directory.
 
 More detailed instructions are available in [docs/BUILD.md](docs/BUILD.md) and [docs/SD_CARD.md](docs/SD_CARD.md).

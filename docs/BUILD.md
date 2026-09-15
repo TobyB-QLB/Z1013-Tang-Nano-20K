@@ -18,7 +18,7 @@
 2. Kontrollieren, dass `video_top` das Top-Modul ist.
 3. „Synthesize“ und anschließend „Place & Route“ ausführen.
 4. Für einen gefahrlosen Test im Programmer `SRAM Program` verwenden.
-5. Erst nach erfolgreichem Test dauerhaft in den internen Konfigurations-Flash schreiben.
+5. Erst nach erfolgreichem Test mit `External Flash Mode` dauerhaft in den Flash auf dem Board schreiben.
 
 Der geprüfte und sofort nutzbare Bitstream liegt als `release/z1013.fs` vor. `release/hdmi.bin` ist eine alternative Binärdarstellung für andere Programmierverfahren. Für Gowin Programmer wird `z1013.fs` empfohlen. Die Prüfsummen befinden sich in `release/SHA256SUMS`.
 
@@ -47,7 +47,7 @@ Die FAT32-Routinen liegen in `firmware/IO_SYS_NEU`. Sie werden mit SjASMPlus ass
 The tested bitstream is [`release/z1013.fs`](../release/z1013.fs). Connect the board through USB and select this file in Gowin Programmer.
 
 - Use `SRAM Program` for a temporary test. The configuration is lost when power is removed.
-- After a successful test, program the internal configuration flash for automatic startup after power-on.
+- After a successful test, select `External Flash Mode` and program the on-board flash for automatic startup after power-on.
 
 `release/hdmi.bin` is an alternative raw binary for other programming methods. Use `z1013.fs` with Gowin Programmer. Checksums are stored in `release/SHA256SUMS`.
 
@@ -57,7 +57,7 @@ The tested bitstream is [`release/z1013.fs`](../release/z1013.fs). Connect the b
 2. Confirm that `video_top` is the top module.
 3. Run Synthesize and then Place & Route.
 4. Test the result with `SRAM Program`.
-5. Program the internal configuration flash only after the test succeeds.
+5. Select `External Flash Mode` and program the on-board flash only after the test succeeds.
 
 ### Rebuilding the boot ROM
 

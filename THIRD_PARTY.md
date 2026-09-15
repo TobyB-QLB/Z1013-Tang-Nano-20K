@@ -1,4 +1,4 @@
-# Fremdkomponenten, Lizenzen und offene Rechtefragen
+# Fremdkomponenten, Lizenzen und Rechtehinweise
 
 Dieses Projekt integriert Fremdkomponenten und historisches Binärmaterial. Ihre Urheberschaft und Lizenz bleiben vollständig erhalten. Ein öffentlich auffindbares Ursprungsrepository ersetzt keine ausdrückliche Lizenz.
 
@@ -20,7 +20,7 @@ Der T80-Kern ist keine Entwicklung dieses Projektautors; er wurde als unverände
 
 Die Dateien `audio_clock_regeneration_packet.sv`, `packet_picker.sv` und `serializer.sv` wurden gegenüber dem Upstream-Stand angepasst. `ted_sound_core.sv` und `z1013_hdmi_audio_tx.sv` sind projektspezifische Ergänzungen. Die übrigen gleichnamigen SystemVerilog-Dateien entsprechen beim Vergleich dem Upstream-Stand `83b1c9543a91b776671a44e68e130f81cae437b7`. Der HDMI-Grundkern wird nicht als eigene Entwicklung ausgegeben.
 
-## Sipeed-/Gowin-HDMI-Beispiel und Gowin-IP — vor Veröffentlichung zu klären
+## Sipeed-/Gowin-HDMI-Beispiel und Gowin-IP
 
 Mehrere Dateien stammen ganz oder teilweise aus dem öffentlichen Repository [sipeed/TangNano-20K-example](https://github.com/sipeed/TangNano-20K-example):
 
@@ -30,7 +30,7 @@ Mehrere Dateien stammen ganz oder teilweise aus dem öffentlichen Repository [si
 - `src/hdmi.cst`: projektspezifisch geändert
 - `src/gowin_rom/gowin_z1013_rom.vhd`: mit Gowin EDA erzeugte ROM-IP, Copyright Gowin Semiconductor, „All rights reserved“
 
-Im Stamm des überprüften Sipeed-Beispielrepositorys wurde keine allgemeine Lizenz gefunden. Vor öffentlicher Weitergabe ist deshalb entweder eine einschlägige Erlaubnis aus den Gowin-/Sipeed-Lizenzbedingungen zu dokumentieren oder diese Dateien sind durch selbst geschriebene, funktional gleichwertige Dateien zu ersetzen. Die öffentliche Auffindbarkeit der Beispiele genügt dafür nicht.
+Im Stamm des überprüften Sipeed-Beispielrepositorys wurde keine allgemeine Lizenz gefunden. Die betreffenden Dateien behalten deshalb ihre vorhandenen Gowin-Copyright-Hinweise und werden hier nicht als eigene Entwicklung ausgegeben. Dieses Projekt beansprucht für sie keine zusätzlichen Nutzungsrechte.
 
 ## Historisches Z1013-ROM und Zeichensatz von Robotron
 
@@ -42,7 +42,7 @@ Im Stamm des überprüften Sipeed-Beispielrepositorys wurde keine allgemeine Liz
 
 Öffentlich zugängliche Archivnachweise sind beispielsweise die [Z1013-Software-Datenbank](https://www.z1013.mrboot.de/software-database/db/index.html) mit dem Robotron-Monitor 2.02 sowie das [Z1013-ROM-Archiv bei Planet Emulation](https://www.planetemu.net/rom/mame-roms/z1013), das unter anderem `mon_202.bin` und `z1013font.bin` aufführt. Diese Links belegen die öffentliche Verfügbarkeit, aber nicht zwingend die Herkunft exakt der im Projekt verwendeten Binärdatei.
 
-Die freie Zugänglichkeit im Internet belegt die Herkunft und praktische Verfügbarkeit, ist aber nicht automatisch mit einer ausdrücklichen Lizenz zur Weiterverbreitung gleichzusetzen. Eine solche Lizenz oder Freigabe ist im Repository derzeit nicht dokumentiert. Vor einer öffentlichen Distribution sollte deshalb entweder eine belastbare Quelle mit ihren Nutzungsbedingungen angegeben oder das historische Material vom Download getrennt werden.
+Die freie Zugänglichkeit im Internet belegt die Herkunft und praktische Verfügbarkeit, ist aber nicht automatisch mit einer ausdrücklichen Lizenz zur Weiterverbreitung gleichzusetzen. Eine solche Lizenz oder Freigabe ist im Repository derzeit nicht dokumentiert. Das historische Material bleibt Robotron beziehungsweise möglichen Rechtsnachfolgern zugeordnet; dieses Projekt beansprucht daran weder Urheberschaft noch zusätzliche Nutzungsrechte.
 
 ## Programme PACMAN, KIKSTART und PUNIVERS
 

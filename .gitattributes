@@ -1,0 +1,4 @@
+# Generated FPGA bitstreams are binary files, not F# source code.
+*.fs binary linguist-detectable=false
+*.bin binary linguist-detectable=false
+*.COM binary linguist-detectable=false

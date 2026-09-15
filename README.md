@@ -6,7 +6,7 @@
 
 FPGA-Nachbau eines erweiterten Z1013 für das Sipeed Tang Nano 20K. Dieser Stand ist praktisch getestet und bietet einen Z80/T80, 64 KiB RAM, Text- und Vollgrafik, Farben, HDMI-Bild und -Ton, eine PS/2-Tastatur und Zugriff auf eine FAT32-microSD-Karte.
 
-> **Veröffentlichungsstatus:** Technisch getesteter Release-Kandidat. Boot-ROM und Zeichengenerator stammen von Robotron aus der DDR und sind derzeit über öffentlich zugängliche Internetquellen verfügbar. Eine ausdrückliche Weiterverbreitungslizenz ist im Projekt noch nicht dokumentiert. Auch die Bedingungen für übernommene Gowin-Dateien müssen vor der öffentlichen Freigabe geklärt oder die Dateien ersetzt werden. Einzelheiten stehen in [THIRD_PARTY.md](THIRD_PARTY.md) und im lokalen Veröffentlichungsbericht.
+> **Veröffentlichungsstatus:** Öffentlich veröffentlichter und auf echter Hardware getesteter Projektstand. Boot-ROM und Zeichengenerator stammen von Robotron aus der DDR und sind seit vielen Jahren in öffentlich zugänglichen Internetarchiven verfügbar. Für diese historischen Dateien wird keine eigene Urheberschaft oder zusätzliche Lizenz beansprucht. Herkunft und Fremdkomponenten sind in [THIRD_PARTY.md](THIRD_PARTY.md) dokumentiert.
 
 ## Funktionsumfang
 
@@ -68,7 +68,7 @@ Weitere Informationen, frühere Z80-/Z180-Eigenbauten und zusätzliche Dokumenta
 
 ## Rechte und Herkunft
 
-Der T80-Kern, der HDMI-Grundkern und Teile des ursprünglichen Tang-Nano-HDMI-Beispiels stammen aus Fremdprojekten und werden ausdrücklich nicht als eigene Entwicklung ausgegeben. Das historische ROM- und Zeichensatzmaterial von Robotron ist gesondert gekennzeichnet. Einzelheiten, Änderungsstatus und offene Rechtefragen stehen in [THIRD_PARTY.md](THIRD_PARTY.md). Für die projektspezifischen Eigenentwicklungen einschließlich der drei Programme wird derzeit keine pauschale Nutzungslizenz erteilt; siehe [LICENSE.md](LICENSE.md).
+Der T80-Kern, der HDMI-Grundkern und Teile des ursprünglichen Tang-Nano-HDMI-Beispiels stammen aus Fremdprojekten und werden ausdrücklich nicht als eigene Entwicklung ausgegeben. Das historische ROM- und Zeichensatzmaterial von Robotron ist gesondert gekennzeichnet. Einzelheiten zu Herkunft, Änderungen und Lizenzstatus stehen in [THIRD_PARTY.md](THIRD_PARTY.md). Für die projektspezifischen Eigenentwicklungen einschließlich der drei Programme wird derzeit keine pauschale Nutzungslizenz erteilt; siehe [LICENSE.md](LICENSE.md).
 
 ---
 
@@ -76,7 +76,7 @@ Der T80-Kern, der HDMI-Grundkern und Teile des ursprünglichen Tang-Nano-HDMI-Be
 
 This project recreates an enhanced Z1013 computer on the Sipeed Tang Nano 20K FPGA board. This version has been tested on real hardware. It provides a Z80/T80 CPU, 64 KiB RAM, text and full-screen graphics, color attributes, HDMI video and audio, a PS/2 keyboard, and access to a FAT32 microSD card.
 
-> **Publication status:** Technically tested release candidate. The boot ROM and character generator originate from Robotron in the former GDR and are currently available from public Internet archives. The repository does not yet document an explicit redistribution license for them. The conditions for included Gowin files must also be clarified, or those files must be replaced, before public release. See [THIRD_PARTY.md](THIRD_PARTY.md).
+> **Publication status:** Publicly released project version tested on real hardware. The boot ROM and character generator originate from Robotron in the former GDR and have been available from public Internet archives for many years. This project claims neither authorship nor an additional license for these historical files. Origins and third-party components are documented in [THIRD_PARTY.md](THIRD_PARTY.md).
 
 ### Features
 
@@ -136,4 +136,4 @@ More information, earlier Z80/Z180 home-built computers, and additional document
 
 ### Rights and origins
 
-The T80 core, the HDMI base core, and parts of the original Tang Nano HDMI example originate from third-party projects and are not presented as original work. Historical Robotron ROM and character-set material is identified separately. See [THIRD_PARTY.md](THIRD_PARTY.md) for origins, modifications, and unresolved rights questions. No general permission to use or redistribute the project-specific work, including the three games, is currently granted; see [LICENSE.md](LICENSE.md).
+The T80 core, the HDMI base core, and parts of the original Tang Nano HDMI example originate from third-party projects and are not presented as original work. Historical Robotron ROM and character-set material is identified separately. See [THIRD_PARTY.md](THIRD_PARTY.md) for origins, modifications, and license status. No general permission to use or redistribute the project-specific work, including the three games, is currently granted; see [LICENSE.md](LICENSE.md).

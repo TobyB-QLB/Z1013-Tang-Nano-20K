@@ -8,4 +8,4 @@ Zu den projektspezifischen Eigenentwicklungen gehören insbesondere die Programm
 
 Diese Erklärung erfasst keine Fremdkomponenten, historischen ROM-Inhalte, Zeichensätze oder sonstigen Bestandteile, an denen Dritte Rechte besitzen können. Für diese gelten ausschließlich die jeweiligen Rechte und Lizenzbedingungen. Maßgeblich sind [THIRD_PARTY.md](THIRD_PARTY.md), die Lizenztexte im jeweiligen Quellverzeichnis und die Copyright-Hinweise in den Dateien.
 
-Eine öffentliche Bereitstellung des Quelltexts allein räumt deshalb noch kein Recht ein, alle enthaltenen Dateien zu verwenden oder weiterzugeben. Vor einer öffentlichen Freigabe müssen die in `THIRD_PARTY.md` als ungeklärt markierten Bestandteile geklärt, ersetzt oder entfernt werden.
+Eine öffentliche Bereitstellung des Quelltexts allein räumt deshalb noch kein Recht ein, alle enthaltenen Dateien zu verwenden oder weiterzugeben. Für Fremdkomponenten und historische Bestandteile werden keine über die jeweils bestehenden Rechte hinausgehenden Nutzungsrechte behauptet oder eingeräumt. Herkunft und bekannter Lizenzstatus sind in `THIRD_PARTY.md` dokumentiert.

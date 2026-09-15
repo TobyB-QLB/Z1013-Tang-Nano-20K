@@ -1,0 +1,13 @@
+.DS_Store
+*.gprj.user
+impl/
+**/impl/
+*.log
+*.bak
+*.tmp
+*.html
+*.rpt
+*.db
+*.vg
+*.timing_paths
+

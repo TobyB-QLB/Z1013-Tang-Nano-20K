@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW2AR-18C" pn="GW2AR-LV18QN88C8/I7">gw2ar18c-000</Device>
+    <FileList>
+        <File path="src/gowin_rpll/TMDS_rPLL.v" type="file.verilog" enable="1"/>
+        <File path="src/hdmi_audio/audio_clock_regeneration_packet.sv" type="file.verilog" enable="1"/>
+        <File path="src/hdmi_audio/audio_info_frame.sv" type="file.verilog" enable="1"/>
+        <File path="src/hdmi_audio/audio_sample_packet.sv" type="file.verilog" enable="1"/>
+        <File path="src/hdmi_audio/auxiliary_video_information_info_frame.sv" type="file.verilog" enable="1"/>
+        <File path="src/hdmi_audio/packet_assembler.sv" type="file.verilog" enable="1"/>
+        <File path="src/hdmi_audio/packet_picker.sv" type="file.verilog" enable="1"/>
+        <File path="src/hdmi_audio/serializer.sv" type="file.verilog" enable="1"/>
+        <File path="src/hdmi_audio/source_product_description_info_frame.sv" type="file.verilog" enable="1"/>
+        <File path="src/hdmi_audio/tmds_channel.sv" type="file.verilog" enable="1"/>
+        <File path="src/hdmi_audio/hdmi.sv" type="file.verilog" enable="1"/>
+        <File path="src/hdmi_audio/ted_sound_core.sv" type="file.verilog" enable="1"/>
+        <File path="src/hdmi_audio/z1013_hdmi_audio_tx.sv" type="file.verilog" enable="1"/>
+        <File path="src/gowin_rom/gowin_z1013_rom.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/video_ram.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/color_ram.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/main_ram.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/sector_buffer.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/sd_spi_block_reader.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/font_rom.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/t80/T80_Pack.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/t80/T80_ALU.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/t80/T80_MCode.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/t80/T80_Reg.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/t80/T80.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/t80/T80se.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/z80_core_wrapper.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/ps2_keyboard.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/testpattern.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/video_top.v" type="file.verilog" enable="1"/>
+        <File path="src/hdmi.cst" type="file.cst" enable="1"/>
+        <File path="src/nano_20k_video.sdc" type="file.sdc" enable="1"/>
+    </FileList>
+</Project>

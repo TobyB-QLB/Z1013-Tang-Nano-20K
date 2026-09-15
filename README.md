@@ -44,7 +44,7 @@ Dieser Stand entspricht dem gesicherten Projekt `Z1013_HDMI_FULL8K_SD_Z80_FAT32_
 4. Den fertigen Bitstream [`release/z1013.fs`](release/z1013.fs) mit Gowin Programmer auf das Tang Nano 20K übertragen. Zum Ausprobieren `SRAM Mode` verwenden; für einen dauerhaften Start `External Flash Mode` wählen und den Flash auf dem Board programmieren.
 5. Nach dem Start F1 drücken, um das Kartenverzeichnis zu sehen.
 
-Ausführlichere Hinweise stehen in [docs/BUILD.md](docs/BUILD.md) und [docs/SD_CARD.md](docs/SD_CARD.md).
+Ausführlichere Hinweise stehen in [docs/BUILD.md](docs/BUILD.md) und [docs/SD_CARD.md](docs/SD_CARD.md). Wer Gowin Programmer nicht verwenden möchte, findet unter [docs/OPENFPGALOADER.md](docs/OPENFPGALOADER.md) eine einfache Anleitung für das freie Werkzeug openFPGALoader.
 
 ## Mitgelieferte Programme
 
@@ -112,7 +112,7 @@ This project recreates an enhanced Z1013 computer on the Sipeed Tang Nano 20K FP
 4. Program [`release/z1013.fs`](release/z1013.fs) onto the Tang Nano 20K with Gowin Programmer. Use `SRAM Mode` for a temporary test, or select `External Flash Mode` and program the on-board flash to keep the system after power-off.
 5. Start the board and press F1 to display the card directory.
 
-More detailed instructions are available in [docs/BUILD.md](docs/BUILD.md) and [docs/SD_CARD.md](docs/SD_CARD.md).
+More detailed instructions are available in [docs/BUILD.md](docs/BUILD.md) and [docs/SD_CARD.md](docs/SD_CARD.md). If you prefer not to use Gowin Programmer, [docs/OPENFPGALOADER.md](docs/OPENFPGALOADER.md) explains how to use the free openFPGALoader tool.
 
 ### Included programs
 

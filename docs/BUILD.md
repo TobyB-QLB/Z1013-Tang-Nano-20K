@@ -22,6 +22,8 @@
 
 Der geprüfte und sofort nutzbare Bitstream liegt als `release/z1013.fs` vor. `release/hdmi.bin` ist eine alternative Binärdarstellung für andere Programmierverfahren. Für Gowin Programmer wird `z1013.fs` empfohlen. Die Prüfsummen befinden sich in `release/SHA256SUMS`.
 
+Alternativ lässt sich `z1013.fs` ohne Gowin EDA mit openFPGALoader laden oder dauerhaft speichern. Die Befehle stehen in [OPENFPGALOADER.md](OPENFPGALOADER.md).
+
 ## Boot-ROM neu bauen
 
 Die FAT32-Routinen liegen in `firmware/IO_SYS_NEU`. Sie werden mit SjASMPlus assembliert. Das Skript `build_boot_rom.rb` setzt die erzeugten Teile in `src/gowin_rom/z1013_boot_rom.bin` ein. Vor Änderungen unbedingt eine Kopie des funktionierenden ROMs aufbewahren.
@@ -50,6 +52,8 @@ The tested bitstream is [`release/z1013.fs`](../release/z1013.fs). Connect the b
 - After a successful test, select `External Flash Mode` and program the on-board flash for automatic startup after power-on.
 
 `release/hdmi.bin` is an alternative raw binary for other programming methods. Use `z1013.fs` with Gowin Programmer. Checksums are stored in `release/SHA256SUMS`.
+
+As an alternative, openFPGALoader can load or permanently store `z1013.fs` without Gowin EDA. See [OPENFPGALOADER.md](OPENFPGALOADER.md) for the commands.
 
 ### Building from source
 

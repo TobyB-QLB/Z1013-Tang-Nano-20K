@@ -2,6 +2,8 @@
 
 FPGA-Nachbau eines erweiterten Z1013 auf dem Sipeed Tang Nano 20K. Dieser Stand ist die praktisch getestete Fassung mit Z80/T80, 64 KiB RAM, Text- und Vollgrafik, Farbattributen, HDMI-Bild und -Ton, PS/2-Tastatur sowie FAT32-Zugriff auf die eingebaute microSD-Karte.
 
+> **Veröffentlichungsstatus:** Technisch getesteter Release-Kandidat. Boot-ROM und Zeichengenerator stammen von Robotron aus der DDR und sind derzeit über öffentlich zugängliche Internetquellen verfügbar. Eine ausdrückliche Weiterverbreitungslizenz ist im Projekt noch nicht dokumentiert. Auch die Bedingungen für übernommene Gowin-Dateien müssen vor der öffentlichen Freigabe geklärt oder die Dateien ersetzt werden. Einzelheiten stehen in [THIRD_PARTY.md](THIRD_PARTY.md) und im lokalen Veröffentlichungsbericht.
+
 ## Funktionsumfang
 
 - T80-kompatibler Z80-Prozessorkern
@@ -48,10 +50,12 @@ Ausführlichere Hinweise stehen in [docs/BUILD.md](docs/BUILD.md) und [docs/SD_C
 
 Die Dateien besitzen bereits den 9-Byte-Z1013-Kopf und können direkt auf die FAT32-Karte kopiert werden. Die jeweils zugehörigen Assemblerquellen und Grafikelemente liegen daneben im Verzeichnis `source/`.
 
+PACMAN, KIKSTART und PUNIVERS wurden vollständig von Tobias Bremer für den Z1013 entwickelt. Programmcode, Darstellung, Grafik, Sound und Ausführung sind eigene Arbeiten. Die Programme sind lediglich an historische Spielideen angelehnt und wurden für dieses Projekt neu umgesetzt. Weitere Angaben stehen in [programs/README.md](programs/README.md).
+
 ## FAT32-Werkzeug @DS
 
 Unter `tools/at-ds/` liegen ein Universalprogramm für macOS, eine x86-Fassung für Windows und der portable C-Quelltext. Das Werkzeug versieht eine rohe Programmdatei mit dem benötigten Z1013-Kopf und kopiert sie auf die SD-Karte. Siehe [tools/at-ds/README.md](tools/at-ds/README.md).
 
 ## Rechte und Herkunft
 
-Der T80-Kern und Teile der HDMI-Implementierung stammen aus öffentlich verfügbaren Fremdprojekten und werden ausdrücklich nicht als eigene Entwicklung ausgegeben. Einzelheiten und Lizenzhinweise stehen in [THIRD_PARTY.md](THIRD_PARTY.md). Für Projektteile ohne eigenen Lizenzhinweis wird derzeit keine pauschale Nutzungslizenz erteilt; siehe [LICENSE.md](LICENSE.md).
+Der T80-Kern, der HDMI-Grundkern und Teile des ursprünglichen Tang-Nano-HDMI-Beispiels stammen aus Fremdprojekten und werden ausdrücklich nicht als eigene Entwicklung ausgegeben. Das historische ROM- und Zeichensatzmaterial von Robotron ist gesondert gekennzeichnet. Einzelheiten, Änderungsstatus und offene Rechtefragen stehen in [THIRD_PARTY.md](THIRD_PARTY.md). Für die projektspezifischen Eigenentwicklungen einschließlich der drei Programme wird derzeit keine pauschale Nutzungslizenz erteilt; siehe [LICENSE.md](LICENSE.md).

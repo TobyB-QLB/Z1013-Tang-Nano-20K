@@ -2,7 +2,7 @@
 
 require "digest"
 
-project = File.expand_path("..", __dir__)
+project = File.expand_path("../..", __dir__)
 base_path = File.join(project, "src", "gowin_rom", "z1013_boot_rom.bin")
 io_path = File.join(__dir__, "IO_FAT32_DL.BIN")
 ds_path = File.join(__dir__, "DS_FAT32.BIN")

@@ -1,5 +1,7 @@
 ; -----------------------------------------------------------------------------
 ; KIKSTART.COM - farbiges Trial-Spiel fuer Z1013 HDMI FULL8K COLOR
+; Copyright (c) Tobias Bremer.
+; Eigenentwicklung fuer den Z1013; keine historischen Programmteile oder Assets.
 ; STUFE 9: freie Pixel-Sprinter-Adaption mit 140-BPM-TED-Schlagzeug
 ;
 ; Start: 0100h, Vollgrafik: OUT 18h, VRAM B000h-CFFFh

@@ -1,5 +1,7 @@
 ; -----------------------------------------------------------------------------
 ; PUNIVERS.COM - Z-PUNIVERSE mit Titelmusik und TED-Spieleffekten
+; Copyright (c) Tobias Bremer.
+; Eigenentwicklung fuer den Z1013; keine historischen Programmteile oder Assets.
 ;
 ; Eigenstaendiges Plattformspiel mit zehn neu entworfenen Raeumen.
 ; Start: 0100h, Vollgrafik: OUT 18h, VRAM B000h-CFFFh

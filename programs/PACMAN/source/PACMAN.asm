@@ -1,5 +1,7 @@
 ; -----------------------------------------------------------------------------
 ; PACMAN.COM - farbiges Maze-Chase-Spiel mit TED-Titelmusik
+; Copyright (c) Tobias Bremer.
+; Eigenentwicklung fuer den Z1013; keine historischen Programmteile oder Assets.
 ;
 ; Start:       0100h
 ; Grafik:      OUT 18h, 256 x 256 Pixel, VRAM B000h-CFFFh

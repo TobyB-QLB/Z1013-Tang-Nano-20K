@@ -19,6 +19,8 @@ Der eingebaute BL616 des Tang Nano 20K liest die USB-Tastatur und übergibt Tast
 
 Die Companion-Firmware wird ab Adresse `0x40000` geschrieben. Die ursprüngliche Firmware unterhalb `0x40000` bleibt erhalten. Vor Änderungen am BL616-Flash ist trotzdem eine vollständige Sicherung des BL616 empfehlenswert.
 
+Weitere Informationen zur BL616-Funktion, zu den Signalen, zur Boardrevision v3923 und zu den geänderten Companion-Dateien stehen in [BL616_COMPANION.md](BL616_COMPANION.md).
+
 ## Tastaturbelegung
 
 - USB nutzt deutsche QWERTZ-Belegung.
@@ -66,6 +68,8 @@ The on-board BL616 reads the USB keyboard and forwards key events to the FPGA ov
 - `release/companion_z1013.patch`: documents the changes against FPGA-Companion
 
 The companion firmware is written starting at address `0x40000`. The original firmware below `0x40000` remains unchanged. A full BL616 flash backup is still recommended before changing the BL616 flash.
+
+Further information about the BL616 role, signals, the v3923 board revision, and the modified companion files is available in [BL616_COMPANION.md](BL616_COMPANION.md).
 
 ## Keyboard layout
 

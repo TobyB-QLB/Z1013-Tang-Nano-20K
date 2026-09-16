@@ -50,6 +50,8 @@ Für USB werden zwei Dateien benötigt:
 
 Die BL616-Firmware wird ab Adresse `0x40000` geschrieben; die ursprüngliche Firmware unterhalb dieser Adresse bleibt erhalten. Details, Einschränkungen und Prüfergebnisse stehen in [docs/USB_KEYBOARD.md](docs/USB_KEYBOARD.md).
 
+Eine genauere Beschreibung der BL616-Companion-Anpassung steht in [docs/BL616_COMPANION.md](docs/BL616_COMPANION.md).
+
 ## Einfacher Schnellstart
 
 1. Eine microSD-Karte mit MBR-Partitionstabelle und FAT32 formatieren.
@@ -131,6 +133,8 @@ USB operation requires two files:
 - [`release/companion_z1013_v3923.bin`](release/companion_z1013_v3923.bin) – adapted BL616 companion firmware for Tang Nano 20K v3923
 
 The BL616 firmware is written starting at address `0x40000`; the original firmware below that address remains unchanged. See [docs/USB_KEYBOARD.md](docs/USB_KEYBOARD.md) for details, limitations, and verification notes.
+
+A more detailed description of the BL616 companion adaptation is available in [docs/BL616_COMPANION.md](docs/BL616_COMPANION.md).
 
 ### Easy start
 

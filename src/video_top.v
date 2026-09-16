@@ -28,6 +28,11 @@ module video_top
     input             I_key           ,
     input             I_ps2_clk       ,
     input             I_ps2_data      ,
+    input             I_usb_cs_n,
+    input             I_usb_sclk,
+    input             I_usb_mosi,
+    output            O_usb_miso,
+    output            O_usb_irq_n,
     input             I_sd_miso       ,
     output     [4:0]  O_led           ,
     output            running         ,
@@ -87,6 +92,20 @@ end
 
 wire pixel_system_reset_n = &pixel_reset_pipe;
 
+wire [7:0] usb_async_event, usb_event;
+wire usb_event_toggle, usb_event_valid, usb_miso;
+wire usb_traffic, usb_accepted, usb_configured, usb_key_seen, usb_key_down;
+usb_companion_spi usb_spi_inst(
+ .reset(!pixel_system_reset_n), .cs_n(I_usb_cs_n), .sclk(I_usb_sclk), .mosi(I_usb_mosi),
+ .miso(usb_miso), .traffic(usb_traffic), .status_accepted(usb_accepted),
+ .config_accepted(usb_configured), .key_seen(usb_key_seen), .key_down(usb_key_down),
+ .key_event(usb_async_event), .event_toggle(usb_event_toggle));
+assign O_usb_miso = I_usb_cs_n ? 1'bz : usb_miso;
+assign O_usb_irq_n = 1'b1;
+usb_event_cdc usb_cdc_inst(.clk(pix_clk), .reset_n(pixel_system_reset_n),
+ .async_event(usb_async_event), .async_toggle(usb_event_toggle),
+ .event_data(usb_event), .event_valid(usb_event_valid));
+
 //===================================================
 // The former push-button LED counter is intentionally removed. The on-board
 // LEDs are active low: LED 0 now indicates SD-card activity, all others stay
@@ -102,6 +121,8 @@ testpattern testpattern_inst
     .I_rst_n     (pixel_system_reset_n),//low active 
     .I_ps2_clk   (I_ps2_clk          ),
     .I_ps2_data  (I_ps2_data         ),
+    .I_usb_event (usb_event),
+    .I_usb_valid (usb_event_valid),
     .I_sd_miso   (I_sd_miso          ),
     .I_mode      (3'd0               ),//former push-button test disabled
     .I_single_r  (8'd0               ),

@@ -52,3 +52,15 @@ IO_LOC "O_sd_clk" 83;
 IO_PORT "O_sd_clk" IO_TYPE=LVCMOS33 PULL_MODE=NONE DRIVE=8 BANK_VCCIO=3.3;
 IO_LOC "I_sd_miso" 84;
 IO_PORT "I_sd_miso" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+
+// Internal BL616 SPI, board v3923; proven with companion_probe.
+IO_LOC "I_usb_cs_n" 86;
+IO_PORT "I_usb_cs_n" IO_TYPE=LVCMOS33 PULL_MODE=UP;
+IO_LOC "I_usb_sclk" 13;
+IO_PORT "I_usb_sclk" IO_TYPE=LVCMOS33 PULL_MODE=DOWN;
+IO_LOC "I_usb_mosi" 76;
+IO_PORT "I_usb_mosi" IO_TYPE=LVCMOS33 PULL_MODE=NONE;
+IO_LOC "O_usb_miso" 75;
+IO_PORT "O_usb_miso" IO_TYPE=LVCMOS33 PULL_MODE=NONE;
+IO_LOC "O_usb_irq_n" 69;
+IO_PORT "O_usb_irq_n" IO_TYPE=LVCMOS33 PULL_MODE=UP;

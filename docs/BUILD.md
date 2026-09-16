@@ -11,6 +11,7 @@
 - HDMI-Monitor oder Fernseher
 - FAT32-microSD-Karte
 - optional eine PS/2-Tastatur samt passiver 5-V/3,3-V-Pegelanpassung
+- optional für USB-Tastatur: Tang Nano 20K v3923, geeigneter USB-C-Hub und angepasste BL616-Companion-Firmware
 
 ## Erzeugen
 
@@ -20,7 +21,9 @@
 4. Für einen gefahrlosen Test im Programmer `SRAM Program` verwenden.
 5. Erst nach erfolgreichem Test mit `External Flash Mode` dauerhaft in den Flash auf dem Board schreiben.
 
-Der geprüfte und sofort nutzbare Bitstream liegt als `release/z1013.fs` vor. `release/hdmi.bin` ist eine alternative Binärdarstellung für andere Programmierverfahren. Für Gowin Programmer wird `z1013.fs` empfohlen. Die Prüfsummen befinden sich in `release/SHA256SUMS`.
+Der geprüfte und sofort nutzbare PS/2-Bitstream liegt als `release/z1013.fs` vor. Die USB-Tastatur-Version liegt als `release/z1013_usb_v3923.fs` vor und benötigt zusätzlich die BL616-Datei `release/companion_z1013_v3923.bin`. `release/hdmi.bin` ist eine alternative Binärdarstellung für andere Programmierverfahren. Die Prüfsummen befinden sich in `release/SHA256SUMS`.
+
+Hinweise zur USB-Tastatur stehen in [USB_KEYBOARD.md](USB_KEYBOARD.md).
 
 Alternativ lässt sich `z1013.fs` ohne Gowin EDA mit openFPGALoader laden oder dauerhaft speichern. Die Befehle stehen in [OPENFPGALOADER.md](OPENFPGALOADER.md).
 
@@ -43,15 +46,18 @@ Die FAT32-Routinen liegen in `firmware/IO_SYS_NEU`. Sie werden mit SjASMPlus ass
 - HDMI monitor or television
 - FAT32 microSD card
 - Optional PS/2 keyboard with a passive 5 V/3.3 V level adapter
+- Optional for USB keyboard use: Tang Nano 20K v3923, suitable USB-C hub, and adapted BL616 companion firmware
 
 ### Using the ready-made bitstream
 
-The tested bitstream is [`release/z1013.fs`](../release/z1013.fs). Connect the board through USB and select this file in Gowin Programmer.
+The tested PS/2 bitstream is [`release/z1013.fs`](../release/z1013.fs). The USB keyboard version is [`release/z1013_usb_v3923.fs`](../release/z1013_usb_v3923.fs) and also requires the BL616 file [`release/companion_z1013_v3923.bin`](../release/companion_z1013_v3923.bin). Connect the board through USB and select the desired `.fs` file in Gowin Programmer.
 
 - Use `SRAM Program` for a temporary test. The configuration is lost when power is removed.
 - After a successful test, select `External Flash Mode` and program the on-board flash for automatic startup after power-on.
 
-`release/hdmi.bin` is an alternative raw binary for other programming methods. Use `z1013.fs` with Gowin Programmer. Checksums are stored in `release/SHA256SUMS`.
+`release/hdmi.bin` is an alternative raw binary for other programming methods. Checksums are stored in `release/SHA256SUMS`.
+
+USB keyboard notes are available in [USB_KEYBOARD.md](USB_KEYBOARD.md).
 
 As an alternative, openFPGALoader can load or permanently store `z1013.fs` without Gowin EDA. See [OPENFPGALOADER.md](OPENFPGALOADER.md) for the commands.
 

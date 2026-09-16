@@ -33,6 +33,10 @@
         <File path="src/t80/T80se.vhd" type="file.vhdl" enable="1"/>
         <File path="src/z80_core_wrapper.vhd" type="file.vhdl" enable="1"/>
         <File path="src/ps2_keyboard.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/usb_companion_spi.v" type="file.verilog" enable="1"/>
+        <File path="src/usb_event_cdc.v" type="file.verilog" enable="1"/>
+        <File path="src/usb_keyboard.vhd" type="file.vhdl" enable="1"/>
+        <File path="src/dual_keyboard.vhd" type="file.vhdl" enable="1"/>
         <File path="src/testpattern.vhd" type="file.vhdl" enable="1"/>
         <File path="src/video_top.v" type="file.verilog" enable="1"/>
         <File path="src/hdmi.cst" type="file.cst" enable="1"/>

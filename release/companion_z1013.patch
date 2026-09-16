@@ -1,0 +1,59 @@
+--- a/src/inifile.c
++++ b/src/inifile.c
+@@ -22,7 +22,7 @@
+   {NULL,     NULL,                                   -1 }
+ };
+ 
+-static int options[2] = { 0x45, 0 };  // default options: hotkey=F12, led=blink
++static int options[2] = { 0, 0 };  // Z1013: no OSD hotkey; F1/F2/F9-F12 belong to the FPGA
+ static void inifile_parse_option(char *id, char *value) {
+   for(const struct option_S *oid = option_ids;oid->name;oid++) {
+     if(!strcasecmp(oid->name, id)) {
+--- a/src/bl616/mcu_hw.c
++++ b/src/bl616/mcu_hw.c
+@@ -569,6 +569,15 @@
+   vTaskDelay(pdMS_TO_TICKS(hid_interval_ms));
+   }
+ 
++  // Z1013 protocol extension: clear USB keys on keyboard disconnection.
++  // Does not touch the FPGA's independent PS/2 state.
++  if (hid->report.type == REPORT_TYPE_KEYBOARD) {
++    mcu_hw_spi_begin();
++    mcu_hw_spi_tx_u08(SPI_TARGET_HID);
++    mcu_hw_spi_tx_u08(SPI_HID_KEYBOARD);
++    mcu_hw_spi_tx_u08(0xff);
++    mcu_hw_spi_end();
++  }
+   usb_debugf("HID client #%d: stopping", hid->index);
+   if (hid->hid_state.joystick.js_index != NO_JOYSTICK) {
+     hid_release_joystick(hid->hid_state.joystick.js_index);
+@@ -966,6 +975,8 @@
+   #define SPI_PIN_MOSI  GPIO_PIN_3  /* out SPI_DAT */
+   #define SPI_PIN_IRQ   GPIO_PIN_13 /* in  UART RX, crossed */
+ #elif defined(TANG_NANO20K_V3923)
++  // Z1013 keyboard needs little bandwidth; keep real SCLK below FPGA 20-MHz constraint.
++  #define SPI_FREQUENCY 12000000
+   #define SPI_PIN_CSN   GPIO_PIN_0  /* out SPI_CSn */
+   #define SPI_PIN_SCK   GPIO_PIN_1  /* out SPI_SCLK */
+   #define SPI_PIN_MISO  GPIO_PIN_30 /* in  SPI_DIR */
+--- a/src/bl616/CMakeLists.txt
++++ b/src/bl616/CMakeLists.txt
+@@ -34,7 +34,8 @@
+ sdk_add_include_directories($ENV{BL_SDK_BASE}/components/net/lwip/lwip/src/include)
+ sdk_add_include_directories(. ../u8g2/csrc)
+ 
+-sdk_add_link_options(-Wl,--wrap=bflb_console_write)
++sdk_add_link_options(-Wl,--wrap=bflb_console_write -fno-lto)
++sdk_add_compile_options(-fno-lto)
+ 
+ # User
+ sdk_add_compile_definitions(-DCONFIG_CLI_CMD_ENABLE)
+--- a/src/bl616/defconfig
++++ b/src/bl616/defconfig
+@@ -46,3 +46,6 @@
+ CONFIG_FATFS_SDH_SDCARD=y
+ # CONFIG_CONSOLE_WO=y
+ 
++
++# Mac T-Head GCC: SDK prebuilt libraries cannot be mixed with LTO.
++CONFIG_GCC_COMPILE_LTO=n

@@ -1,0 +1,28 @@
+{
+  "date": "2026-09-16",
+  "status": "FPGA flash program+verify PASS; reloaded, usercode 0x00009007 confirmed",
+  "change": "F1/F2: all phases 40ms, keep Shift after 2 release, 22-bit timer",
+  "fpga_image": "z1013_fat32_usb_de_v3923_macrofix.fs",
+  "sha256": "c71664c4957aa939212a7a2673d739e10e2fceecfcf3d0653f4cd38c4ab7592f",
+  "bytes": 7261966,
+  "tests": {
+    "monitor": "840/840 original monitor scanner cases",
+    "HDL": "PASS USB/PS2, F1/F2, F9-F12, modifiers, unplug",
+    "SPI": "PASS"
+  },
+  "bl616_update_required": false,
+  "known_limitation": "Inherited T80 setup timing violations remain",
+  "programming_state": "COMPLETE: FPGA macro correction programmed, verified and usercode 0x00009007 confirmed; BL616 Companion restored and entire 4MiB flash byte-identical to backup",
+  "secondary_backup": "bl616_before_macrofix_4MiB.bin",
+  "secondary_restore_image": "companion_z1013_v3923.bin",
+  "secondary_restore_address": "0x40000",
+  "usercode": "0x00009007",
+  "bl616_restore_checks": {
+    "full_4MiB_readback": true,
+    "primary_unchanged": true,
+    "companion_matches_release": true,
+    "entire_flash_restored_exactly": true
+  },
+  "bl616_restore_sha256": "bc0cde20bf14ebdf6990f9c127034f5621d01b8da992e4e77f38b8385a770454",
+  "hardware_macro_test": "pending user test after power cycle"
+}

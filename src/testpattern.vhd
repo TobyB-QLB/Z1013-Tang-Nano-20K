@@ -26,6 +26,8 @@ entity testpattern is
     port (
         I_pxl_clk  : in  std_logic;
         I_rst_n    : in  std_logic;
+        I_usb_event : in std_logic_vector(7 downto 0);
+        I_usb_valid : in std_logic;
         I_ps2_clk  : in  std_logic;
         I_ps2_data : in  std_logic;
         I_sd_miso    : in std_logic;
@@ -267,12 +269,14 @@ begin
     -- Both inputs are synchronized to the existing pixel clock.  No clock from
     -- the keyboard is ever connected to the FPGA clock network.
     ---------------------------------------------------------------------------
-    PS2_KEYBOARD : entity work.ps2_keyboard
+    PS2_KEYBOARD : entity work.dual_keyboard
         port map (
             I_clk      => I_pxl_clk,
             I_rst_n    => I_rst_n,
             I_ps2_clk  => I_ps2_clk,
             I_ps2_data => I_ps2_data,
+            I_usb_event => I_usb_event,
+            I_usb_valid => I_usb_valid,
             O_matrix   => keyboard_matrix_s,
             O_reset_request => ps2_reset_request_s,
             O_cpu_speed => cpu_speed_s

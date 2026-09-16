@@ -32,13 +32,21 @@ Mehrere Dateien stammen ganz oder teilweise aus dem öffentlichen Repository [si
 
 Im Stamm des überprüften Sipeed-Beispielrepositorys wurde keine allgemeine Lizenz gefunden. Die betreffenden Dateien behalten deshalb ihre vorhandenen Gowin-Copyright-Hinweise und werden hier nicht als eigene Entwicklung ausgegeben. Dieses Projekt beansprucht für sie keine zusätzlichen Nutzungsrechte.
 
+## FPGA-Companion für BL616
+
+- Dateien: `release/companion_z1013_v3923.bin`, `release/companion_z1013.patch`, `release/secondary_only.ini`
+- Ursprung: [MiSTle-Dev/FPGA-Companion](https://github.com/MiSTle-Dev/FPGA-Companion)
+- Lizenz laut Ursprung: Apache-2.0
+
+Die BL616-Companion-Firmware wurde für die USB-Tastaturanbindung dieses Projekts angepasst. Der Patch deaktiviert den OSD-Hotkey, sendet beim Abziehen einer USB-Tastatur ein Freigabeereignis und reduziert die SPI-Frequenzanforderung für die v3923-Belegung. Die Datei `companion_z1013.patch` dokumentiert die Änderungen gegenüber dem ursprünglichen FPGA-Companion-Quellstand.
+
 ## Historisches Z1013-ROM und Zeichensatz von Robotron
 
 - Boot-ROM und Zeichengenerator stammen von Robotron aus der DDR. Die historischen Daten sind derzeit über öffentlich zugängliche Quellen im Internet frei abrufbar.
 - `src/gowin_rom/z1013_boot_rom.bin` enthält wiederhergestellte historische Monitor-, `COMMAND.COM`- und weitere ROM-Inhalte von Robotron sowie projektspezifische FAT32-Erweiterungen.
 - `src/gowin_rom/gowin_z1013_rom.vhd` bettet diese Daten in VHDL-Initialisierungswerte ein.
 - `src/font_rom.vhd` enthält den originalen Z1013-Zeichengenerator von Robotron aus `Z1013.bin`.
-- `release/hdmi.bin` und `release/z1013.fs` enthalten diese Bestandteile in synthetisierter Form.
+- `release/hdmi.bin`, `release/z1013.fs` und `release/z1013_usb_v3923.fs` enthalten diese Bestandteile in synthetisierter Form.
 
 Öffentlich zugängliche Archivnachweise sind beispielsweise die [Z1013-Software-Datenbank](https://www.z1013.mrboot.de/software-database/db/index.html) mit dem Robotron-Monitor 2.02 sowie das [Z1013-ROM-Archiv bei Planet Emulation](https://www.planetemu.net/rom/mame-roms/z1013), das unter anderem `mon_202.bin` und `z1013font.bin` aufführt. Diese Links belegen die öffentliche Verfügbarkeit, aber nicht zwingend die Herkunft exakt der im Projekt verwendeten Binärdatei.
 

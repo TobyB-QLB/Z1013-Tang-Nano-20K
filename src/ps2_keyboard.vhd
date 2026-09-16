@@ -19,11 +19,16 @@ use IEEE.NUMERIC_STD.ALL;
 -- to the keyboard.
 
 entity ps2_keyboard is
+    generic (EXTERNAL_SCAN : boolean := false);
     port (
         I_clk       : in  std_logic;
         I_rst_n     : in  std_logic;
         I_ps2_clk   : in  std_logic;
         I_ps2_data  : in  std_logic;
+        I_scan_code : in std_logic_vector(7 downto 0) := x"00";
+        I_scan_valid : in std_logic := '0';
+        O_speed_changed : out std_logic;
+        O_macro_active : out std_logic;
         O_matrix    : out std_logic_vector(79 downto 0);
         O_reset_request : out std_logic;
         -- 00 = 1 MHz, 01 = 2 MHz, 10 = 4 MHz, 11 = 8.25 MHz
@@ -73,20 +78,16 @@ architecture Behavioral of ps2_keyboard is
     signal caps_key_down_s : std_logic := '0';
     signal reset_request_s : std_logic := '0';
 
-    -- F1/F2 are local keyboard macros.  Each press and release phase lasts
-    -- 20 ms, so the original monitor also sees the sequence reliably at the
-    -- selectable 1-MHz CPU speed.
-    constant MACRO_PHASE_LAST_C : unsigned(20 downto 0) :=
-        to_unsigned(1484999, 21);
-    -- Shift+2 must be only a short pulse.  Holding the number key for the
-    -- complete 20-ms phase lets the monitor accept @ and then occasionally
-    -- scan the still-held 2 a second time without the modifier. Four
-    -- milliseconds are long enough for the 1-MHz monitor scan but short
-    -- enough to prevent its key-repeat path.
-    constant MACRO_AT_PRESS_LAST_C : unsigned(20 downto 0) :=
-        to_unsigned(296999, 21);
+    -- F1/F2 are local keyboard macros. The original monitor scans empty
+    -- rows in polling loops and can need tens of milliseconds at 1 MHz.
+    -- Every phase lasts 40 ms, including Shift+2 and the following Shift-only
+    -- phase. Keep Shift held after releasing 2: the scanner first remembers
+    -- the key and only later reads the modifiers. Releasing Shift early can
+    -- turn the pending @ into 2. Verified against the unmodified FD20 scanner.
+    constant MACRO_PHASE_LAST_C : unsigned(21 downto 0) :=
+        to_unsigned(2969999, 22);
     signal macro_phase_s : integer range 0 to 10 := 0;
-    signal macro_counter_s : unsigned(20 downto 0) := (others => '0');
+    signal macro_counter_s : unsigned(21 downto 0) := (others => '0');
     signal macro_is_dl_s : std_logic := '0';
     signal f1_down_s : std_logic := '0';
     signal f2_down_s : std_logic := '0';
@@ -94,6 +95,7 @@ architecture Behavioral of ps2_keyboard is
 
 begin
 
+    O_macro_active <= '1' when macro_phase_s /= 0 else '0';
     O_reset_request <= reset_request_s;
     O_cpu_speed <= cpu_speed_s;
 
@@ -102,6 +104,7 @@ begin
     -- PS/2 data is captured on falling clock edges.  A frame consists of a
     -- zero start bit, eight LSB-first data bits, odd parity and a one stop bit.
     ---------------------------------------------------------------------------
+    physical_receiver: if not EXTERNAL_SCAN generate
     process(I_clk, I_rst_n)
     begin
         if I_rst_n = '0' then
@@ -193,6 +196,12 @@ begin
         end if;
     end process;
 
+    end generate;
+    external_receiver: if EXTERNAL_SCAN generate
+        scan_code_s <= I_scan_code;
+        scan_valid_s <= I_scan_valid;
+    end generate;
+
     ---------------------------------------------------------------------------
     -- Scan Code Set 2 to original Z1013 matrix.
     --
@@ -231,18 +240,15 @@ begin
             f1_down_s <= '0';
             f2_down_s <= '0';
             cpu_speed_s <= "11";
+            O_speed_changed <= '0';
         elsif rising_edge(I_clk) then
             -- One pixel-clock pulse; the top level stretches it into a complete
             -- Z1013 system reset without disturbing HDMI/TMDS synchronization.
             reset_request_s <= '0';
+            O_speed_changed <= '0';
 
             if macro_phase_s /= 0 then
-                if
-                    (macro_phase_s = 2 and
-                     macro_counter_s = MACRO_AT_PRESS_LAST_C) or
-                    (macro_phase_s /= 2 and
-                     macro_counter_s = MACRO_PHASE_LAST_C)
-                then
+                if macro_counter_s = MACRO_PHASE_LAST_C then
                     macro_counter_s <= (others => '0');
                     if macro_phase_s = 10 then
                         macro_phase_s <= 0;
@@ -350,13 +356,13 @@ begin
                             end if;
                         end if;
                     elsif extended_pending_s = '0' and break_pending_s = '0' and scan_code_s = x"01" then
-                        cpu_speed_s <= "00"; -- F9  = 1 MHz
+                        cpu_speed_s <= "00"; O_speed_changed <= '1'; -- F9  = 1 MHz
                     elsif extended_pending_s = '0' and break_pending_s = '0' and scan_code_s = x"09" then
-                        cpu_speed_s <= "01"; -- F10 = 2 MHz
+                        cpu_speed_s <= "01"; O_speed_changed <= '1'; -- F10 = 2 MHz
                     elsif extended_pending_s = '0' and break_pending_s = '0' and scan_code_s = x"78" then
-                        cpu_speed_s <= "10"; -- F11 = 4 MHz
+                        cpu_speed_s <= "10"; O_speed_changed <= '1'; -- F11 = 4 MHz
                     elsif extended_pending_s = '0' and break_pending_s = '0' and scan_code_s = x"07" then
-                        cpu_speed_s <= "11"; -- F12 = 8.25 MHz
+                        cpu_speed_s <= "11"; O_speed_changed <= '1'; -- F12 = 8.25 MHz
                     elsif extended_pending_s = '1' then
                         case scan_code_s is
                             when x"6B" => matrix_state_s(0)  <= key_pressed_v; -- cursor left  -> 08h

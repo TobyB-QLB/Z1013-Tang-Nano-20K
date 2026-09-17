@@ -67,13 +67,37 @@ Dieser Ablauf verändert **keine BL616-Firmware**. Eine bereits passende Compani
 
 Die folgenden Schritte gelten für ein verfügbares, zur Boardrevision passendes Secondary-Image. Für 3921 steht ein experimenteller Download bereit; der neue 3923-Dateiname ist weiterhin angekündigt.
 
+### Benötigtes Programm
+
+Für den BL616 wird **BouffaloLabDevCube** (Programmdatei unter Windows: `BLDevCube.exe`) verwendet. Download und Bedienhinweise sind über die [offizielle Bouffalo-Lab-Seite](https://dev.bouffalolab.com/download) erreichbar; Sipeed beschreibt denselben Ablauf in seiner [Tang-Debugger-Anleitung](https://en.wiki.sipeed.com/hardware/en/tang/common-doc/update_debugger). Im Startfenster muss als Chip **BL616/618** gewählt werden.
+
+**openFPGALoader kann diese BL616-BIN-Dateien nicht schreiben.** Es programmiert beim Tang Nano 20K den Gowin-FPGA beziehungsweise dessen Konfigurationsflash. Die ähnlich aussehenden Adressen gehören zu verschiedenen Flash-Bausteinen.
+
+| Einstellung in BouffaloLabDevCube | Wert für die USB-Tastatur-Firmware |
+|---|---|
+| Chip | `BL616/618` |
+| Downloadart | `Single download` aktivieren |
+| Firmwaredatei für 3921 | `bl616/firmware/z1013-usb-keyboard-3921.bin` |
+| Firmwaredatei für 3923 | `release/companion_z1013_v3923.bin` |
+| Startadresse | **`0x40000`** |
+| Verbindung | der im Downloadmodus neu erschienene serielle Port |
+
+Die 3921-Datei ist experimentell und noch nicht auf echter 3921-Hardware geprüft. Die beiden Dateien niemals zwischen den Boardrevisionen austauschen.
+
+### Programmierung Schritt für Schritt
+
 1. Revision, Dateiherkunft, Prüfsumme und kompatiblen FPGA-Stand prüfen. Eine vollständige Sicherung des eigenen BL616-Flash samt verwendeter Werkzeugversion aufbewahren.
 2. Sipeed-Debugger-Version prüfen (mindestens `2025030317`); bei nötiger Aktualisierung die offizielle Anleitung und [Recovery-Hinweise](recovery/README.md) beachten.
 3. Board stromlos machen. Den mit **UPDATE** beschrifteten BL616-Taster beim Anschließen an den Rechner gedrückt halten, danach loslassen. Nicht mit den FPGA-Benutzertastern verwechseln.
-4. Im von Sipeed beschriebenen Bouffalo Lab Dev Cube **BL616/618** und den neu erscheinenden Download-Port wählen.
-5. Für das Secondary-Image ausdrücklich **`0x40000`** als Startadresse einstellen. Nur den benötigten Bereich löschen/schreiben, **keinen vollständigen Chip-Erase** ausführen; der Bereich `0x00000` bis `0x3FFFF` muss erhalten bleiben. Die Einstellungen anhand der Anleitung der verwendeten Werkzeugversion prüfen.
-6. Schreiben abschließen und verifizieren bzw. zurücklesen. Für den vorhandenen 3923-Stand dokumentiert [`secondary_only.ini`](../release/secondary_only.ini) Datei und Adresse; sie verweist weiterhin auf `companion_z1013_v3923.bin`, nicht auf die angekündigten neuen Namen.
-7. Neu starten, diesmal ohne UPDATE. Für den Tastaturbetrieb den Rechneranschluss durch den in [USB_KEYBOARD.md](../docs/USB_KEYBOARD.md) beschriebenen geeigneten, versorgten USB-C-Hub mit Tastatur ersetzen. Z1013-Eingabe, Loslassen und erneutes Anstecken prüfen; bei Problemen siehe [Recovery](recovery/README.md).
+4. BouffaloLabDevCube starten und im Startfenster **BL616/618** wählen.
+5. Unter **Single download** die Option **Enable** aktivieren und mit **Browse** die zur Boardrevision passende BIN-Datei auswählen.
+6. Den im Downloadmodus neu erschienenen seriellen Port auswählen. Unter Windows ist dies ein COM-Port, unter Linux typischerweise `/dev/ttyACM…`, unter macOS `/dev/tty.usbmodem…` oder `/dev/cu.usbmodem…`.
+7. Als Startadresse ausdrücklich **`0x40000`** eintragen. Vor dem Start Datei, Boardrevision und Adresse noch einmal kontrollieren.
+8. **Open UART** wählen und anschließend **Create & Download** starten. Nur den benötigten Bereich schreiben, **keinen vollständigen Chip-Erase** ausführen; der Primary-Bereich `0x00000` bis `0x3FFFF` muss erhalten bleiben.
+9. Den erfolgreichen Abschluss abwarten und nach Möglichkeit verifizieren beziehungsweise zurücklesen. Für den vorhandenen 3923-Stand dokumentiert [`secondary_only.ini`](../release/secondary_only.ini) Datei und Adresse; sie verweist weiterhin auf `companion_z1013_v3923.bin`, nicht auf die angekündigten neuen Namen.
+10. USB-Kabel abziehen und das Board neu starten, diesmal ohne UPDATE. Für den Tastaturbetrieb den Rechneranschluss durch den in [USB_KEYBOARD.md](../docs/USB_KEYBOARD.md) beschriebenen geeigneten, versorgten USB-C-Hub mit Tastatur ersetzen. Z1013-Eingabe, Loslassen und erneutes Anstecken prüfen; bei Problemen siehe [Recovery](recovery/README.md).
+
+> **Letzte Kontrolle vor „Create & Download“:** passendes 3921-/3923-Image, Chip `BL616/618`, Startadresse `0x40000`. Eine Z1013-Tastatur-BIN an `0x00000` überschreibt die Sipeed-Debugger-/Partner-Firmware.
 
 ## Quellen und Prüfgrenzen
 

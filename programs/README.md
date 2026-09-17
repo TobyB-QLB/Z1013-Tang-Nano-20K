@@ -1,5 +1,7 @@
 # Programme für den Z1013
 
+Zusätzlich zu den drei unten beschriebenen Spielen gibt es [DEMO.COM](DEMO/README.md), das Concept-Demo mit bereits enthaltenem 9-Byte-Dateikopf. Seine Musikherkunft und sein Prüfstand sind separat dokumentiert.
+
 Copyright © Tobias Bremer.
 
 Die Programme PACMAN, KIKSTART und PUNIVERS wurden vollständig von Tobias Bremer für den Z1013 entwickelt und neu umgesetzt. Dies gilt für sämtliche enthaltenen Bestandteile:
@@ -21,6 +23,8 @@ Die mitgelieferten Dateien `PACMAN.COM`, `KIKSTART.COM` und `PUNIVERS.COM` besit
 ---
 
 # Programs for the Z1013
+
+In addition to the three games described below, [DEMO.COM](DEMO/README.md) provides the Concept demo with its 9-byte header already included. Music credits and verification status are documented separately.
 
 Copyright © Tobias Bremer.
 

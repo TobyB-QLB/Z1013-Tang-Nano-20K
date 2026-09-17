@@ -66,6 +66,8 @@ Ausführlichere Hinweise stehen in [docs/BUILD.md](docs/BUILD.md) und [docs/SD_C
 
 ## Mitgelieferte Programme
 
+Zusätzlich: [DEMO.COM – Concept-Demo](programs/DEMO/README.md) mit farbigem Lauftext und Musik, inklusive 9-Byte-Dateikopf.
+
 - `programs/PACMAN/PACMAN.COM`
 - `programs/PUNIVERS/PUNIVERS.COM` – stabile, getestete Fassung
 - `programs/KIKSTART/KIKSTART.COM`
@@ -151,6 +153,8 @@ A more detailed description of the BL616 companion adaptation is available in [d
 More detailed instructions are available in [docs/BUILD.md](docs/BUILD.md) and [docs/SD_CARD.md](docs/SD_CARD.md). If you prefer not to use Gowin Programmer, [docs/OPENFPGALOADER.md](docs/OPENFPGALOADER.md) explains how to use the free openFPGALoader tool.
 
 ### Included programs
+
+Also available: [DEMO.COM – Concept demo](programs/DEMO/README.md), with color scrolling text, music, and the required 9-byte header.
 
 - `programs/PACMAN/PACMAN.COM`
 - `programs/PUNIVERS/PUNIVERS.COM` – stable, tested version

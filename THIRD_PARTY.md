@@ -63,3 +63,7 @@ Die Namen PACMAN und KIKSTART dienen der Beschreibung dieser Neuimplementierunge
 ## Projektspezifische Werkzeuge und Firmware
 
 Die FAT32-Firmware, die Z1013-Integration, der Klangkern und `tools/at-ds/` besitzen derzeit nur den eingeschränkten Lizenzstatus aus `LICENSE.md`. Die beiden vorkompilierten `@DS`-Programme wurden gegen die dortigen Prüfsummen kontrolliert; die Reproduzierbarkeit aus `tools/at-ds/src/at_ds.c` sollte vor einem Release zusätzlich auf beiden Zielplattformen dokumentiert werden.
+
+## Concept-Demo / DEMO.COM
+
+`programs/DEMO/DEMO.COM` ist die Z1013-Umsetzung des lokalen Concept-Demos. Die Musikdaten wurden aus der Musik des Amiga-Intros „3D Editor Intro“ von Concept (1990) umgesetzt; [Demozoo](https://demozoo.org/productions/229393/) nennt Zzzax als Musiker und Performer für Code, Grafik und Text des Originals. Für diese Musik wird keine eigene Urheberschaft oder zusätzliche Lizenz beansprucht. Weitere Angaben stehen in [programs/DEMO/README.md](programs/DEMO/README.md).

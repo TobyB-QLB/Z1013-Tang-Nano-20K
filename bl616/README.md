@@ -8,10 +8,12 @@ Vor jedem BL616-Update die Revision auf der Platine prüfen. Für 3921 und 3923 
 
 | Boardrevision | Vorgesehener Dateiname | Status |
 |---|---|---|
-| 3921 | `z1013-usb-keyboard-3921.bin` | Kommendes Release-Artefakt; noch nicht enthalten oder für dieses Projekt validiert |
+| 3921 | [`z1013-usb-keyboard-3921.bin`](firmware/z1013-usb-keyboard-3921.bin) | Experimenteller Build; noch nicht auf 3921-Hardware getestet |
 | 3923 | `z1013-usb-keyboard-3923.bin` | Kommendes Release-Artefakt unter diesem Namen; noch nicht enthalten |
 
-Es werden keine Dummy-Binaries bereitgestellt. Bereits vorhanden ist der separate 3923-Stand [`release/companion_z1013_v3923.bin`](../release/companion_z1013_v3923.bin), zusammen mit [`release/z1013_usb_v3923.fs`](../release/z1013_usb_v3923.fs). Dessen Funktionsumfang und Einschränkungen stehen in [USB_KEYBOARD.md](../docs/USB_KEYBOARD.md), die Companion-Anpassungen in [BL616_COMPANION.md](../docs/BL616_COMPANION.md). Dieser Stand wird hier weder umbenannt noch als 3921-Firmware ausgegeben. Für 3921 muss auch der passende FPGA-Stand geprüft werden; die neue Dateinamenskonvention allein schafft keine Hardware-Kompatibilität.
+**3921-Kompatibilität:** Das Secondary-Image gilt nur für 3921-Boards mit funktionierender Sipeed-Partner-Firmware (mindestens `2025030317`). Es gibt auch ältere, nicht passend ab Werk gefuste 3921-Boards, auf denen die verschlüsselte Partner-Firmware nicht läuft. Die Aufschrift 3921 allein reicht deshalb nicht zur Freigabe. Für diese Boards ist dieses Secondary-Paket nicht geeignet; es wird hier kein Ersatzimage für `0x00000` angeboten. Keine eFuses ändern. Siehe [Upstream-Boardvarianten](https://github.com/MiSTle-Dev/.github/wiki/Versions_TangNano20k).
+
+Es werden keine Dummy-Binaries bereitgestellt. Bereits vorhanden ist der separate 3923-Stand [`release/companion_z1013_v3923.bin`](../release/companion_z1013_v3923.bin), zusammen mit [`release/z1013_usb_v3923.fs`](../release/z1013_usb_v3923.fs). Dessen Funktionsumfang und Einschränkungen stehen in [USB_KEYBOARD.md](../docs/USB_KEYBOARD.md), die Companion-Anpassungen in [BL616_COMPANION.md](../docs/BL616_COMPANION.md). Dieser Stand wird hier weder umbenannt noch als 3921-Firmware ausgegeben. Für 3921 muss auch der passende FPGA-Stand geprüft werden; die neue Dateinamenskonvention allein schafft keine Hardware-Kompatibilität. Quellpatch, Build und ausstehende Hardwaretests stehen unter [source/](source/README.md).
 
 ## Zwei Bausteine, drei unterschiedliche Dateien
 
@@ -63,7 +65,7 @@ Dieser Ablauf verändert **keine BL616-Firmware**. Eine bereits passende Compani
 
 ## BL616-Tastatur-Firmware erstmalig installieren oder aktualisieren
 
-Die folgenden Schritte gelten für ein verfügbares, zur Boardrevision passendes Secondary-Image. Die beiden angekündigten Dateinamen sind noch keine Downloads.
+Die folgenden Schritte gelten für ein verfügbares, zur Boardrevision passendes Secondary-Image. Für 3921 steht ein experimenteller Download bereit; der neue 3923-Dateiname ist weiterhin angekündigt.
 
 1. Revision, Dateiherkunft, Prüfsumme und kompatiblen FPGA-Stand prüfen. Eine vollständige Sicherung des eigenen BL616-Flash samt verwendeter Werkzeugversion aufbewahren.
 2. Sipeed-Debugger-Version prüfen (mindestens `2025030317`); bei nötiger Aktualisierung die offizielle Anleitung und [Recovery-Hinweise](recovery/README.md) beachten.
@@ -79,4 +81,4 @@ Die folgenden Schritte gelten für ein verfügbares, zur Boardrevision passendes
 - [openFPGALoader: First steps](https://trabucayre.github.io/openFPGALoader/guide/first-steps.html): SRAM- und Flash-Programmierung.
 - [Vorhandener Projekt-Prüfstand](../release/USB_KEYBOARD_STATUS.json): protokollierte Prüfungen und verbleibende Hardware-Prüfung der Makros.
 
-Diese Dokumentation ergänzt die Veröffentlichungsvorbereitung. Sie behauptet keine neuen Hardwaretests und keine Freigabe eines 3921-Images.
+Diese Dokumentation ergänzt die Veröffentlichungsvorbereitung. Das 3921-Image ist gebaut und statisch geprüft, aber nicht auf Hardware getestet oder als stabil freigegeben.

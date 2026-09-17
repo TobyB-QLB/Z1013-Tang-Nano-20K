@@ -39,7 +39,7 @@ Dieser Stand entspricht dem gesicherten Projekt `Z1013_HDMI_FULL8K_SD_Z80_FAT32_
 
 ## USB-Tastatur-Update
 
-Die [BL616-Installations- und Recovery-Anleitung](bl616/README.md) trennt FPGA-Updates, Sipeed-Debugger und Secondary-Firmware und dokumentiert die kommenden getrennten Release-Dateien für 3921/3923.
+Die [BL616-Installations- und Recovery-Anleitung](bl616/README.md) trennt FPGA-Updates, Sipeed-Debugger und Secondary-Firmware und dokumentiert die getrennten BL616-Dateien für 3921/3923. Ein [experimenteller 3921-Build](bl616/firmware/README.md) ist verfügbar; der Hardwaretest steht aus.
 
 Der aktuelle Quellstand enthält zusätzlich eine USB-Tastaturanbindung für Tang Nano 20K Boards mit Revision v3923. Dabei wertet der vorhandene BL616-Companion eine USB-Tastatur aus und übergibt die Tastaturereignisse per SPI an den FPGA. PS/2 bleibt parallel nutzbar; gedrückte Tasten beider Eingänge werden getrennt verfolgt und in der Z1013-Tastaturmatrix zusammengeführt.
 
@@ -125,7 +125,7 @@ This project recreates an enhanced Z1013 computer on the Sipeed Tang Nano 20K FP
 
 ### USB keyboard update
 
-The [BL616 installation and recovery guide (German)](bl616/README.md) separates FPGA updates, Sipeed debugger firmware and secondary firmware, and documents the planned separate release files for 3921/3923.
+The [BL616 installation and recovery guide (German)](bl616/README.md) separates FPGA updates, Sipeed debugger firmware and secondary firmware, and documents the separate firmware files for 3921/3923. An [experimental 3921 build](bl616/firmware/README.md) is available; hardware testing is pending.
 
 The current source tree also contains USB keyboard support for Tang Nano 20K v3923 boards. The on-board BL616 companion reads a USB keyboard and forwards key events to the FPGA over SPI. PS/2 remains usable at the same time; both keyboard states are tracked separately and combined into the Z1013 keyboard matrix.
 

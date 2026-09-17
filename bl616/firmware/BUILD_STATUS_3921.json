@@ -1,0 +1,29 @@
+{
+  "status": "experimental; not tested on physical 3921 hardware",
+  "board": "Tang Nano 20K 3921 with working compatible Sipeed Partner firmware",
+  "target": "nano20k",
+  "flash_address": "0x40000",
+  "minimum_debugger_version": "2025030317",
+  "filename": "z1013-usb-keyboard-3921.bin",
+  "bytes": 666240,
+  "sha256": "7379083014feef8f6b1f5aa134076fd7a17fbccead6845a85fa5d4a9f155ffe9",
+  "companion_commit": "49ebb110045866493ce5802e46466096b4265874",
+  "sdk_commit_from_existing_build_manifest": "9ce0e6b51d6bfa379c124e7d21a17d30ccce32a3",
+  "compiler": "T-Head riscv64-unknown-elf-gcc 10.2.0 macOS x86_64 via Rosetta",
+  "checks": {
+    "build": "PASS",
+    "preprocessed_gpio_and_clock": "PASS",
+    "upstream_patch_apply_and_source_comparison": "PASS",
+    "3923_control_rebuild": "identical to released binary except two build date/time strings",
+    "fpga_sources_changed": false,
+    "3921_hardware_test": "NOT PERFORMED"
+  },
+  "spi_gpio": {
+    "cs": 0,
+    "sclk": 1,
+    "miso": 2,
+    "mosi": 3,
+    "irq": 13
+  },
+  "spi_requested_hz": 12000000
+}

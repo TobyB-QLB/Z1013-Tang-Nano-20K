@@ -57,6 +57,8 @@ Eine genauere Beschreibung der BL616-Companion-Anpassung steht in [docs/BL616_CO
 
 ## Einfacher Schnellstart
 
+Für USB-Tastatur und spätere FPGA-Updates: [Schnellstart mit Terminalbefehlen für macOS](bl616/SCHNELLSTART.md). Dort steht auch der am Gerät bestätigte Ablauf, falls der BL616 als USB-Host startet und der Programmieradapter fehlt: sichern, Host-Start vorübergehend deaktivieren, FPGA flashen, USB-Host wiederherstellen und vollständig prüfen.
+
 1. Eine microSD-Karte mit MBR-Partitionstabelle und FAT32 formatieren.
 2. Gewünschte `.COM`-Programme aus `programs/`, beispielsweise `PACMAN.COM`, `KIKSTART.COM`, `PUNIVERS.COM` oder `TERTRIS.COM`, in das Wurzelverzeichnis der Karte kopieren. Die Dateien sind bereits fertig vorbereitet.
 3. PS/2-Tastatur über die in [docs/HARDWARE.md](docs/HARDWARE.md) beschriebene Pegelanpassung anschließen.
@@ -147,6 +149,8 @@ The BL616 firmware is written starting at address `0x40000`; the original firmwa
 A more detailed description of the BL616 companion adaptation is available in [docs/BL616_COMPANION.md](docs/BL616_COMPANION.md).
 
 ### Easy start
+
+For USB keyboard setup and subsequent FPGA updates, see the [macOS quick start with terminal commands (German)](bl616/SCHNELLSTART.md). It includes the hardware-tested procedure when the BL616 starts as a USB host and the programming adapter is unavailable: back up, temporarily disable secondary boot, program the FPGA, restore USB host operation, and verify the complete BL616 flash.
 
 1. Format a microSD card with an MBR partition table and a FAT32 partition.
 2. Copy the desired `.COM` programs from `programs/`, such as `PACMAN.COM`, `KIKSTART.COM`, `PUNIVERS.COM`, or `TERTRIS.COM`, to the root directory of the card. These files are ready to use.

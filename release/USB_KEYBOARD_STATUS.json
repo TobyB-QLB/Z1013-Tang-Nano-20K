@@ -1,28 +1,28 @@
 {
-  "date": "2026-09-16",
-  "status": "FPGA flash program+verify PASS; reloaded, usercode 0x00009007 confirmed",
-  "change": "F1/F2: all phases 40ms, keep Shift after 2 release, 22-bit timer",
-  "fpga_image": "z1013_fat32_usb_de_v3923_macrofix.fs",
-  "sha256": "c71664c4957aa939212a7a2673d739e10e2fceecfcf3d0653f4cd38c4ab7592f",
+  "date": "2026-10-05",
+  "status": "FAT32 write update: FPGA programmed and verified; user confirmed @DS operation on Tang Nano 20K v3923",
+  "fpga_image": "z1013_usb_v3923.fs",
+  "sha256": "514c1a45de11a70821cfe7bb2216e9ae728c06272463fd50a79802d3d538d3d4",
   "bytes": 7261966,
+  "usercode": "0x0000D9EA",
+  "tool": "Gowin V1.9.12.03 (86715)",
+  "source_base_commit": "ae63a1d9aa055a9f176cbec338bfd2a559964da4",
+  "source_changes": [
+    "src/sd_spi_block_reader.vhd"
+  ],
+  "change": "Wait up to 500 ms for SD programming busy completion; accept up to 31 idle bytes before write response; retain F3 DOS launcher",
   "tests": {
-    "monitor": "840/840 original monitor scanner cases",
-    "HDL": "PASS USB/PS2, F1/F2, F9-F12, modifiers, unplug",
-    "SPI": "PASS"
+    "simulation": "PASS: consecutive sectors, 90 ms busy with delayed response, 500 ms timeout, CRC rejection, missing response",
+    "fpga_program_and_verify": "PASS, openFPGALoader",
+    "bl616_restore": "PASS, entire 4 MiB identical to own pre-update backup",
+    "hardware_at_ds": "User confirmed successful operation after FPGA update; no independent byte-by-byte file-content verification recorded"
   },
   "bl616_update_required": false,
-  "known_limitation": "Inherited T80 setup timing violations remain",
-  "programming_state": "COMPLETE: FPGA macro correction programmed, verified and usercode 0x00009007 confirmed; BL616 Companion restored and entire 4MiB flash byte-identical to backup",
-  "secondary_backup": "bl616_before_macrofix_4MiB.bin",
-  "secondary_restore_image": "companion_z1013_v3923.bin",
-  "secondary_restore_address": "0x40000",
-  "usercode": "0x00009007",
-  "bl616_restore_checks": {
-    "full_4MiB_readback": true,
-    "primary_unchanged": true,
-    "companion_matches_release": true,
-    "entire_flash_restored_exactly": true
-  },
-  "bl616_restore_sha256": "bc0cde20bf14ebdf6990f9c127034f5621d01b8da992e4e77f38b8385a770454",
-  "hardware_macro_test": "pending user test after power cycle"
+  "known_limitation": "Existing T80 setup timing violations remain; no system timing sign-off",
+  "previous_f3_build": {
+    "contributor": "Denny (OE4DEA)",
+    "pull_request": 2,
+    "tool": "Gowin V1.9.12.04",
+    "sha256": "676545961a05d6fdcdf27b33f1a96df643bdd4cb425922d05cdc95f4870d9626"
+  }
 }

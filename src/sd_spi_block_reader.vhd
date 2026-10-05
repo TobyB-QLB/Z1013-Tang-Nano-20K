@@ -12,7 +12,9 @@ use IEEE.NUMERIC_STD.ALL;
 entity sd_spi_block_reader is
     generic (
         INIT_HALF_DIV_G : positive := 93;
-        DATA_HALF_DIV_G : positive := 4
+        DATA_HALF_DIV_G : positive := 4;
+        -- 500 ms at the established 74.25-MHz controller clock.
+        WRITE_TIMEOUT_CYCLES_G : positive := 37125000
     );
     port (
         clk          : in  std_logic;
@@ -85,6 +87,7 @@ architecture Behavioral of sd_spi_block_reader is
     signal crc_byte_s : integer range 0 to 1 := 0;
     signal init_tries_s : integer range 0 to 65535 := 0;
     signal token_tries_s : integer range 0 to 65535 := 0;
+    signal write_wait_cycles_s : natural range 0 to WRITE_TIMEOUT_CYCLES_G - 1 := 0;
     signal power_wait_s : integer range 0 to 1000000 := 0;
     signal data_index_s : unsigned(8 downto 0) := (others => '0');
 
@@ -190,6 +193,7 @@ begin
             crc_byte_s <= 0;
             init_tries_s <= 0;
             token_tries_s <= 0;
+            write_wait_cycles_s <= 0;
             power_wait_s <= 0;
             data_index_s <= (others => '0');
             card_v2_s <= '1';
@@ -566,6 +570,7 @@ begin
                 when WRITE_CRC_WAIT =>
                     if byte_done_s = '1' then
                         if crc_byte_s = 1 then
+                            response_tries_s <= 0;
                             state_s <= WRITE_RESPONSE_START;
                         else
                             crc_byte_s <= crc_byte_s + 1;
@@ -583,8 +588,11 @@ begin
                 when WRITE_RESPONSE_WAIT =>
                     if byte_done_s = '1' then
                         if byte_rx_s(4 downto 0) = "00101" then
-                            token_tries_s <= 0;
                             state_s <= WRITE_BUSY_START;
+                        elsif byte_rx_s = x"FF" and response_tries_s < 31 then
+                            -- The data-response token may follow idle bytes.
+                            response_tries_s <= response_tries_s + 1;
+                            state_s <= WRITE_RESPONSE_START;
                         else
                             error_s <= '1';
                             state_s <= FAILED;
@@ -605,11 +613,7 @@ begin
                             spi_cs_n_s <= '1';
                             resume_state_s <= IDLE;
                             state_s <= GAP_START;
-                        elsif token_tries_s = 65535 then
-                            error_s <= '1';
-                            state_s <= FAILED;
                         else
-                            token_tries_s <= token_tries_s + 1;
                             state_s <= WRITE_BUSY_START;
                         end if;
                     end if;
@@ -642,6 +646,19 @@ begin
                     error_s <= '1';
                     write_active_s <= '0';
             end case;
+
+            -- Count actual controller clocks, independently of SPI speed.
+            -- Keep CS selected and busy asserted until programming completes.
+            if state_s = WRITE_BUSY_START or state_s = WRITE_BUSY_WAIT then
+                if write_wait_cycles_s = WRITE_TIMEOUT_CYCLES_G - 1 then
+                    error_s <= '1';
+                    state_s <= FAILED;
+                else
+                    write_wait_cycles_s <= write_wait_cycles_s + 1;
+                end if;
+            else
+                write_wait_cycles_s <= 0;
+            end if;
         end if;
     end process;
 end architecture Behavioral;

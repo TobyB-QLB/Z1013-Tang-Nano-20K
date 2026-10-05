@@ -4,7 +4,9 @@ Stand: 05.10.2026 · Befehle für macOS und das Terminal
 
 Diese Anleitung installiert die USB-Version für das Tang Nano 20K **v3923** und beschreibt spätere FPGA-Updates bei bereits installiertem USB-Host. Der Ablauf wurde am 05.10.2026 am Mac erfolgreich durchgeführt: F3-Bitstream geschrieben und verifiziert, BL616 vollständig wiederhergestellt, USB-Tastatur und DOS.COM-Start per F3 anschließend vom Nutzer bestätigt.
 
-Der veröffentlichte [USB-Bitstream mit F3/DOS-Unterstützung](../release/z1013_usb_v3923.fs) wurde von **[Denny (OE4DEA)](https://github.com/OE4DEA)** mit Gowin V1.9.12.04 aus Commit `4eda812087e03296a27be9ea01363c4e4dd3c907` gebaut und auf Tang Nano 20K v3923 getestet: USB-Tastatur, F1/F2/F3 und F9 bis F12, zuerst in SRAM und danach dauerhaft im externen Flash. Beitrag: [PR #2](https://github.com/TobyB-QLB/Z1013-Tang-Nano-20K/pull/2).
+Der veröffentlichte [USB/F3-Bitstream](../release/z1013_usb_v3923.fs) enthält das **FAT32-Update vom 05.10.2026**: SD-Programmierung bis zu 500 ms abwarten und verzögerte Schreibantworten berücksichtigen. Gebaut mit Gowin V1.9.12.03; FPGA-Flash verifiziert und erfolgreiches `@DS`-Speichern am v3923 von Tobias bestätigt. Details: [SD-Anleitung](../docs/SD_CARD.md).
+
+Der vorherige F3/DOS-Build wurde von **[Denny (OE4DEA)](https://github.com/OE4DEA)** mit Gowin V1.9.12.04 gebaut und auf v3923 getestet: USB-Tastatur, F1/F2/F3 und F9 bis F12. Sein Beitrag über [PR #2](https://github.com/TobyB-QLB/Z1013-Tang-Nano-20K/pull/2) ist die Grundlage dieses Updates.
 
 Für einen eigenen Build dessen Pfad unten als `BITSTREAM` einsetzen. openFPGALoader überträgt fertige Bitstreams; Gowin EDA erzeugt sie. Die bekannten T80-Timing-Hinweise bleiben bestehen.
 
@@ -117,7 +119,7 @@ Nur wenn das passende FPGA erkannt wurde, den ausgewählten Bitstream dauerhaft 
 SHA-256 des derzeit veröffentlichten USB-Bitstreams:
 
 ```text
-676545961a05d6fdcdf27b33f1a96df643bdd4cb425922d05cdc95f4870d9626  z1013_usb_v3923.fs
+514c1a45de11a70821cfe7bb2216e9ae728c06272463fd50a79802d3d538d3d4  z1013_usb_v3923.fs
 ```
 
 Nach erfolgreichem Schreiben **und** erfolgreicher Verifikation mit Abschnitt 4 fortfahren. Falls der USB-Host vorübergehend deaktiviert wurde, zuerst Abschnitt 3 bis zur Wiederherstellung vollständig abschließen.

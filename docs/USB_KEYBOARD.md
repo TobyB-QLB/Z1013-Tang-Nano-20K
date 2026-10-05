@@ -45,6 +45,8 @@ Für einen ersten FPGA-Test kann `z1013_usb_v3923.fs` auch nur in den SRAM gelad
 
 ## Prüfung und Einschränkungen
 
+Der aktuelle USB/F3-Bitstream enthält das [FAT32-Schreibupdate vom 05.10.2026](SD_CARD.md). Erfolgreiches `@DS`-Speichern auf v3923 wurde nach dem Flashen vom Nutzer bestätigt.
+
 Der Stand wurde mit Gowin EDA 1.9.12.03 gebaut. FPGA-Flash und BL616-Zusatzfirmware wurden geschrieben, verifiziert und zurückgelesen. Die F1/F2-Makros wurden verlängert, damit der originale Z1013-Monitor die Zeichenfolge bei 1 MHz zuverlässig erkennt.
 
 Bekannte Einschränkungen:
@@ -95,6 +97,8 @@ Not all national special characters have been added as new Z1013 characters. The
 For an initial FPGA test, `z1013_usb_v3923.fs` can also be loaded into SRAM only. Persistent USB keyboard operation requires the matching BL616 companion firmware.
 
 ## Verification and limitations
+
+The current USB/F3 bitstream includes the [FAT32 write update of 2026-10-05](SD_CARD.md). The user confirmed successful `@DS` saving on v3923 after programming.
 
 This version was built with Gowin EDA 1.9.12.03. FPGA flash and BL616 secondary firmware were programmed, verified, and read back. The F1/F2 macros were extended so that the original Z1013 monitor reliably sees the command sequence even at 1 MHz.
 

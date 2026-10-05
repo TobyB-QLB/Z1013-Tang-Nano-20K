@@ -55,6 +55,8 @@ Die BL616-Firmware wird ab Adresse `0x40000` geschrieben; die ursprüngliche Fir
 
 Eine genauere Beschreibung der BL616-Companion-Anpassung steht in [docs/BL616_COMPANION.md](docs/BL616_COMPANION.md).
 
+**FAT32-Update (05.10.2026):** Der [USB/F3-Bitstream für v3923](release/z1013_usb_v3923.fs) wartet länger auf SD-Schreibvorgänge und berücksichtigt verzögerte Schreibantworten. Erfolgreiches `@DS`-Speichern wurde am Gerät bestätigt. [Details und Prüfumfang](docs/SD_CARD.md).
+
 ## Einfacher Schnellstart
 
 Für USB-Tastatur und spätere FPGA-Updates: [Schnellstart mit Terminalbefehlen für macOS](bl616/SCHNELLSTART.md). Dort steht auch der am Gerät bestätigte Ablauf, falls der BL616 als USB-Host startet und der Programmieradapter fehlt: sichern, Host-Start vorübergehend deaktivieren, FPGA flashen, USB-Host wiederherstellen und vollständig prüfen.
@@ -147,6 +149,8 @@ USB operation requires two files:
 The BL616 firmware is written starting at address `0x40000`; the original firmware below that address remains unchanged. See [docs/USB_KEYBOARD.md](docs/USB_KEYBOARD.md) for details, limitations, and verification notes.
 
 A more detailed description of the BL616 companion adaptation is available in [docs/BL616_COMPANION.md](docs/BL616_COMPANION.md).
+
+**FAT32 update (2026-10-05):** The [v3923 USB/F3 bitstream](release/z1013_usb_v3923.fs) waits longer for SD programming and accepts delayed write responses. Successful `@DS` saving was confirmed on hardware. [Details and verification scope](docs/SD_CARD.md).
 
 ### Easy start
 

@@ -46,6 +46,14 @@ Gesichert wird der aktuell eingeblendete Speicher. Im Grafikmodus betrifft
 derselbe Modus bzw. dieselbe Bank eingestellt sein. Diese Funktion ist kein
 vollständiger Snapshot mit allen Speicherbänken, CPU- und Hardware-Zuständen.
 
+## SD-Schreibkorrektur im Quellstand vom 05.10.2026
+
+Der Controller schreibt mehrere Sektoren als aufeinanderfolgende CMD24-Einzelblöcke. Die bisherige Busy-Abfrage endete schon nach etwa 59 ms; eine Karte mit längerer Programmierzeit führte dadurch zu einem Sektorschreibfehler. Außerdem wurde eine verzögerte Schreibantwort nach nur einem gelesenen Byte als Fehler behandelt.
+
+Der korrigierte Quellstand wartet nach einer akzeptierten Schreibantwort bis zu 500 ms auf das Ende der Busy-Phase. Vor der Schreibantwort sind bis zu 31 Idle-Bytes erlaubt. CRC-/Schreibfehler und Zeitüberschreitungen bleiben Fehler. SPI-Takt, Leseweg und Monitorbefehle bleiben unverändert. Die Regression unter [tests/sd_write](../tests/sd_write/README.md) prüft drei aufeinanderfolgende Sektoren, verzögerte Antworten, lange Busy-Zeiten und Fehlerfälle.
+
+Die veröffentlichte Datei [release/z1013_usb_v3923.fs](../release/z1013_usb_v3923.fs) enthält diese Korrektur. Nach Flash-Verifikation und vollständiger BL616-Wiederherstellung bestätigte Tobias am 05.10.2026 erfolgreiches `@DS`-Speichern auf v3923. Eine unabhängige bytegenaue Prüfung der gespeicherten Datei ist nicht protokolliert. Die älteren PS/2-Release-Dateien wurden nicht neu gebaut.
+
 ## Mitgelieferte Spiele
 
 `PACMAN.COM`, `KIKSTART.COM`, `PUNIVERS.COM` und `TERTRIS.COM` besitzen bereits einen gültigen 9-Byte-Kopf. Sie werden unverändert in das Wurzelverzeichnis der FAT32-Karte kopiert. Das Werkzeug `@DS` darf auf diese fertigen Dateien nicht noch einmal angewendet werden, weil dadurch ein zweiter Kopf entstehen würde.
@@ -97,6 +105,12 @@ The file contains the currently mapped memory. In graphics mode,
 `B000h..CFFFh` selects video or colour RAM; restore with the same mode and
 bank selected. This is not a complete snapshot of all memory banks, CPU
 registers or hardware state.
+
+### SD write correction in the source as of 2026-10-05
+
+The controller writes consecutive sectors as separate CMD24 blocks. Previously it stopped busy polling after about 59 ms and treated a delayed write response as an immediate error. The updated source waits up to 500 ms for programming to finish and accepts up to 31 idle bytes before the response token. CRC/write errors and timeouts still fail. SPI frequency, the read path and monitor commands are unchanged. See [tests/sd_write](../tests/sd_write/README.md) for regression coverage.
+
+The published [release/z1013_usb_v3923.fs](../release/z1013_usb_v3923.fs) includes this correction. Following FPGA verification and complete BL616 restoration, Tobias confirmed successful `@DS` saving on v3923 on 2026-10-05. No independent byte-by-byte saved-file verification is recorded. The older PS/2 release files were not rebuilt.
 
 ### Included games
 

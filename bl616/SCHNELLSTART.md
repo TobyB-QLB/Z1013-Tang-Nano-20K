@@ -4,7 +4,9 @@ Stand: 05.10.2026 · Befehle für macOS und das Terminal
 
 Diese Anleitung installiert die USB-Version für das Tang Nano 20K **v3923** und beschreibt spätere FPGA-Updates bei bereits installiertem USB-Host. Der Ablauf wurde am 05.10.2026 am Mac erfolgreich durchgeführt: F3-Bitstream geschrieben und verifiziert, BL616 vollständig wiederhergestellt, USB-Tastatur und DOS.COM-Start per F3 anschließend vom Nutzer bestätigt.
 
-Der bisher unter `release/z1013_usb_v3923.fs` veröffentlichte Bitstream enthält F3 noch nicht. Für F3 einen neu gebauten Bitstream aus dem aktuellen Quellstand verwenden und dessen Pfad unten als `BITSTREAM` einsetzen. openFPGALoader überträgt fertige Bitstreams; Gowin EDA erzeugt sie. Die bekannten T80-Timing-Hinweise bleiben bestehen.
+Der veröffentlichte [USB-Bitstream mit F3/DOS-Unterstützung](../release/z1013_usb_v3923.fs) wurde von **[Denny (OE4DEA)](https://github.com/OE4DEA)** mit Gowin V1.9.12.04 aus Commit `4eda812087e03296a27be9ea01363c4e4dd3c907` gebaut und auf Tang Nano 20K v3923 getestet: USB-Tastatur, F1/F2/F3 und F9 bis F12, zuerst in SRAM und danach dauerhaft im externen Flash. Beitrag: [PR #2](https://github.com/TobyB-QLB/Z1013-Tang-Nano-20K/pull/2).
+
+Für einen eigenen Build dessen Pfad unten als `BITSTREAM` einsetzen. openFPGALoader überträgt fertige Bitstreams; Gowin EDA erzeugt sie. Die bekannten T80-Timing-Hinweise bleiben bestehen.
 
 Während eines Schreibvorgangs weder Stromversorgung noch USB-Verbindung trennen. Bei einer Fehlermeldung abbrechen und Ursache prüfen.
 
@@ -115,7 +117,7 @@ Nur wenn das passende FPGA erkannt wurde, den ausgewählten Bitstream dauerhaft 
 SHA-256 des derzeit veröffentlichten USB-Bitstreams:
 
 ```text
-c71664c4957aa939212a7a2673d739e10e2fceecfcf3d0653f4cd38c4ab7592f  z1013_usb_v3923.fs
+676545961a05d6fdcdf27b33f1a96df643bdd4cb425922d05cdc95f4870d9626  z1013_usb_v3923.fs
 ```
 
 Nach erfolgreichem Schreiben **und** erfolgreicher Verifikation mit Abschnitt 4 fortfahren. Falls der USB-Host vorübergehend deaktiviert wurde, zuerst Abschnitt 3 bis zur Wiederherstellung vollständig abschließen.
@@ -242,7 +244,7 @@ Tang stromlos machen. SD-Karte und HDMI anschließen, dann über den geeigneten,
 
 - F1: `@DD` und Enter – Verzeichnis anzeigen.
 - F2: `@DL` und Enter – Datei laden.
-- F3 im neuen Build: `@DL` und Enter, 520 ms Pause, `DOS.COM` und Enter – DOS laden und starten. Im eingabebereiten Monitor auslösen; `DOS.COM` muss im FAT32-Wurzelverzeichnis liegen und einen gültigen Z1013-Dateikopf besitzen.
+- F3: `@DL` und Enter, 520 ms Pause, `DOS.COM` und Enter – DOS laden und starten. Im eingabebereiten Monitor auslösen; `DOS.COM` muss im FAT32-Wurzelverzeichnis liegen und einen gültigen Z1013-Dateikopf besitzen.
 - F9 bis F12: CPU-Geschwindigkeit.
 
 Auf dem v3923-Testgerät wurde am 05.10.2026 der neue F3-Build erfolgreich geflasht und verifiziert. Nach Wiederherstellung war der gesamte 4-MiB-BL616-Flash bytegleich zur Sicherung. Der Nutzer bestätigte anschließend den einwandfreien Betrieb einschließlich F3. Dies ist ein Hardwaretest dieses Aufbaus, keine allgemeine Timingfreigabe oder Bestätigung aller Boardrevisionen.

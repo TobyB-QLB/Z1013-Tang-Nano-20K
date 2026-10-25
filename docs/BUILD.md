@@ -16,10 +16,12 @@
 ## Erzeugen
 
 1. `hdmi.gprj` mit Gowin EDA öffnen.
-2. Kontrollieren, dass `video_top` das Top-Modul ist.
+2. In der Synthese-Konfiguration **SystemVerilog 2017** als Verilog-Standard und `video_top` als Top-Modul kontrollieren. Die HDMI-Dateien mit Endung `.sv` benötigen SystemVerilog; Verilog 2001 verursacht zahlreiche Syntaxfehler bei `logic`, `int` und weiteren Sprachelementen.
 3. „Synthesize“ und anschließend „Place & Route“ ausführen.
 4. Für einen gefahrlosen Test im Programmer `SRAM Program` verwenden.
 5. Erst nach erfolgreichem Test mit `External Flash Mode` dauerhaft in den Flash auf dem Board schreiben.
+
+Die Einstellungen werden von Gowin in `impl/hdmi_process_config.json` gespeichert. Diese Datei gehört zum Projekt und wird mit versioniert; beim Bereinigen der Build-Ausgaben bitte erhalten. Falls sie fehlt, die obigen Synthese-Einstellungen erneut setzen. Für denselben Bitstream-Modus wie beim getesteten USB/F3/FAT32-Build außerdem **Security Bit deaktivieren**.
 
 Der geprüfte und sofort nutzbare PS/2-Bitstream liegt als `release/z1013.fs` vor. Die USB-Tastatur-Version liegt als `release/z1013_usb_v3923.fs` vor und benötigt zusätzlich die BL616-Datei `release/companion_z1013_v3923.bin`. `release/hdmi.bin` ist eine alternative Binärdarstellung für andere Programmierverfahren. Die Prüfsummen befinden sich in `release/SHA256SUMS`.
 
@@ -64,10 +66,12 @@ As an alternative, openFPGALoader can load or permanently store `z1013.fs` witho
 ### Building from source
 
 1. Open `hdmi.gprj` in Gowin EDA.
-2. Confirm that `video_top` is the top module.
+2. In the synthesis configuration, confirm **SystemVerilog 2017** as the Verilog standard and `video_top` as the top module. The HDMI `.sv` files require SystemVerilog; selecting Verilog 2001 causes numerous syntax errors involving `logic`, `int`, and other language features.
 3. Run Synthesize and then Place & Route.
 4. Test the result with `SRAM Program`.
 5. Select `External Flash Mode` and program the on-board flash only after the test succeeds.
+
+Gowin stores these settings in `impl/hdmi_process_config.json`. This file is versioned with the project; preserve it when cleaning build outputs. If it is missing, reapply the synthesis settings above. To match the tested USB/F3/FAT32 build, also **disable Security Bit**.
 
 ### Rebuilding the boot ROM
 

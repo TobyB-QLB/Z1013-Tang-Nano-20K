@@ -1,7 +1,7 @@
 .DS_Store
 *.gprj.user
-impl/
-**/impl/
+**/impl/*
+!/impl/hdmi_process_config.json
 *.log
 *.bak
 *.tmp

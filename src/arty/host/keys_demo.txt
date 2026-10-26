@@ -1,0 +1,2 @@
+2 F2
+5 "DEMO.COM" ENTER
